@@ -103,20 +103,20 @@
   <meta name="keywords" content="iOS," />
 
 
-<meta name="description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。 当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config">
+<meta name="description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config -">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CocoaPods git clone 巨慢的解决方案">
 <meta property="og:url" content="http://godera.org/2018/01/23/CocoaPods-git-clone-巨慢的解决方案/index.html">
 <meta property="og:site_name" content="素墨文胤">
-<meta property="og:description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。 当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config">
+<meta property="og:description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config -">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png">
 <meta property="og:image" content="http://www.aneasystone.com/usr/uploads/2015/08/3353057308.png">
-<meta property="og:updated_time" content="2018-01-23T11:08:02.418Z">
+<meta property="og:updated_time" content="2018-01-24T06:47:08.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocoaPods git clone 巨慢的解决方案">
-<meta name="twitter:description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。 当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config">
+<meta name="twitter:description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config -">
 <meta name="twitter:image" content="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png">
 
 
@@ -328,10 +328,10 @@
       
 
       
-        <p>转自： <a href="http://www.aneasystone.com/archives/2015/08/git-clone-faster.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2015/08/git-clone-faster.html</a><br>本来想自己写来，突然发现这篇文章已经很全面了。<br>我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。</p>
-<p>当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。</p>
+        <p>转自： <a href="http://www.aneasystone.com/archives/2015/08/git-clone-faster.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2015/08/git-clone-faster.html</a><br>本来想自己写来，突然发现这篇文章已经很全面了。<br>我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。<br>当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:50775</span><br><span class="line">git config --global https.proxy https://127.0.0.1:50775</span><br></pre></td></tr></table></figure>
-<h1 id="git-clone-太慢怎么办？"><a href="#git-clone-太慢怎么办？" class="headerlink" title="git clone 太慢怎么办？"></a>git clone 太慢怎么办？</h1><p>Git 和 GitHub 的出现打开了开源世界的另一扇大门，版本控制变得更强大（也更复杂），项目的管理变得更加容易，项目的开发也变得更容易进行多人协作。GitHub 无疑是程序员的 Facebook ，在这里汇聚了无数世界顶级的项目以及顶级的程序员，你可以为你感兴趣的项目加星（Star），可以关注任何人（Follow）以及他们的项目（Watch），而且更赞的是，你可以复制一份别人项目的副本（Fork），来进行自己的修改，如果你愿意的话，你还可以向项目的原作者发起请求（Pull Request），将你做的修改合并到原项目中。这样无论你是什么人，来自不同的国家，拥有不同的技能，都可以对所有开源的项目作出贡献。</p>
+<h1 id="git-clone-太慢怎么办？"><a href="#git-clone-太慢怎么办？" class="headerlink" title="git clone 太慢怎么办？"></a>git clone 太慢怎么办？</h1><a id="more"></a>
+<p>Git 和 GitHub 的出现打开了开源世界的另一扇大门，版本控制变得更强大（也更复杂），项目的管理变得更加容易，项目的开发也变得更容易进行多人协作。GitHub 无疑是程序员的 Facebook ，在这里汇聚了无数世界顶级的项目以及顶级的程序员，你可以为你感兴趣的项目加星（Star），可以关注任何人（Follow）以及他们的项目（Watch），而且更赞的是，你可以复制一份别人项目的副本（Fork），来进行自己的修改，如果你愿意的话，你还可以向项目的原作者发起请求（Pull Request），将你做的修改合并到原项目中。这样无论你是什么人，来自不同的国家，拥有不同的技能，都可以对所有开源的项目作出贡献。</p>
 <p>尽管上面描述的开源世界如此美好，但是在大天朝，在墙内，你却完全无法领略。因为当你访问 GitHub 时，或者使用 <code>git clone</code> 兴致勃勃的下载你感兴趣的项目时，巨慢的速度将彻底击毁你的信心，最终只好放弃表示玩不起。</p>
 <p><img src="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png" alt="git-slower.png"></p>
 <p>强大的长城技术对 GitHub 网开一面，没有像 Google 或 Facebook 这样直接斩尽杀绝，但是对它做了严格的限速，这种折磨比直接毙了更痛苦（<em>有网友表示，有些地区速度很快，有些地区速度很慢，也有可能是和网络运营商有关</em>）。如上图所示，<code>git clone</code> 的下载速度从来没有超过 10KiB/s ，这也就意味着一个 100MiB 的项目，需要近三个小时才能下完，而且由于网络的不稳定性，下载过程中偶尔会出现断开连接的情况，由于 <code>git clone</code> 不支持断点续传，这让几个小时的下载时间白白浪费掉，只能重新开始。</p>

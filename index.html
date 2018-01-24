@@ -327,40 +327,16 @@
 
       
         
-          
-            <p>转自： <a href="http://www.aneasystone.com/archives/2015/08/git-clone-faster.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2015/08/git-clone-faster.html</a><br>本来想自己写来，突然发现这篇文章已经很全面了。<br>我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。</p>
-<p>当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。</p>
+          <p>转自： <a href="http://www.aneasystone.com/archives/2015/08/git-clone-faster.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2015/08/git-clone-faster.html</a><br>本来想自己写来，突然发现这篇文章已经很全面了。<br>我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。<br>当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:50775</span><br><span class="line">git config --global https.proxy https://127.0.0.1:50775</span><br></pre></td></tr></table></figure>
-<h1 id="git-clone-太慢怎么办？"><a href="#git-clone-太慢怎么办？" class="headerlink" title="git clone 太慢怎么办？"></a>git clone 太慢怎么办？</h1><p>Git 和 GitHub 的出现打开了开源世界的另一扇大门，版本控制变得更强大（也更复杂），项目的管理变得更加容易，项目的开发也变得更容易进行多人协作。GitHub 无疑是程序员的 Facebook ，在这里汇聚了无数世界顶级的项目以及顶级的程序员，你可以为你感兴趣的项目加星（Star），可以关注任何人（Follow）以及他们的项目（Watch），而且更赞的是，你可以复制一份别人项目的副本（Fork），来进行自己的修改，如果你愿意的话，你还可以向项目的原作者发起请求（Pull Request），将你做的修改合并到原项目中。这样无论你是什么人，来自不同的国家，拥有不同的技能，都可以对所有开源的项目作出贡献。</p>
-<p>尽管上面描述的开源世界如此美好，但是在大天朝，在墙内，你却完全无法领略。因为当你访问 GitHub 时，或者使用 <code>git clone</code> 兴致勃勃的下载你感兴趣的项目时，巨慢的速度将彻底击毁你的信心，最终只好放弃表示玩不起。</p>
-<p><img src="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png" alt="git-slower.png"></p>
-<p>强大的长城技术对 GitHub 网开一面，没有像 Google 或 Facebook 这样直接斩尽杀绝，但是对它做了严格的限速，这种折磨比直接毙了更痛苦（<em>有网友表示，有些地区速度很快，有些地区速度很慢，也有可能是和网络运营商有关</em>）。如上图所示，<code>git clone</code> 的下载速度从来没有超过 10KiB/s ，这也就意味着一个 100MiB 的项目，需要近三个小时才能下完，而且由于网络的不稳定性，下载过程中偶尔会出现断开连接的情况，由于 <code>git clone</code> 不支持断点续传，这让几个小时的下载时间白白浪费掉，只能重新开始。</p>
-<p>这篇文章将介绍几种方法来快速从 GitHub 上下载代码。</p>
-<h2 id="一、git-shallow-clone"><a href="#一、git-shallow-clone" class="headerlink" title="一、git shallow clone"></a>一、git shallow clone</h2><p><code>git clone</code> 默认会下载项目的完整历史版本，如果你只关心最新版的代码，而不关心之前的历史信息，可以使用 git 的浅复制功能：</p>
-<p><code>--depth=1</code> 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，例如，<a href="https://github.com/bcit-ci/CodeIgniter" target="_blank" rel="noopener">CodeIgniter</a> 项目完整下载有近 100MiB ，而使用浅复制只有 5MiB 多，这样即使在恶劣的网络环境下，也可以快速的获得代码。如果之后又想获取完整历史信息，可以使用下面的命令：</p>
-<p>或者，如果你只是想下载最新的代码看看，你也可以直接从 GitHub 上下载打包好的 ZIP 文件，这比浅复制更快，因为它只包含了最新的代码文件，而且是经过 ZIP 压缩的。但是很显然，浅复制要更灵活一点。</p>
-<h2 id="二、GUI-工具-代理"><a href="#二、GUI-工具-代理" class="headerlink" title="二、GUI 工具 + 代理"></a>二、GUI 工具 + 代理</h2><p>如果很有幸你正在使用代理，懂得如何翻墙的话，那么访问 GitHub 对你来说应该不在话下。下载 GitHub 上项目的最简单的方法就是使用一款图形化界面（GUI）的 Git 工具，这样的工具现在比比皆是。使用 GUI 工具方便的地方在于，可以在设置中配置是否要使用代理，将你翻墙所使用的代理 IP 拿过来配置上就 OK 了，或者更直接的，将代理配置为系统代理。</p>
-<h2 id="三、git-http-proxy"><a href="#三、git-http-proxy" class="headerlink" title="三、git + http.proxy"></a>三、git + http.proxy</h2><p>如果你跟我一样，喜欢使用原生的 git 命令，喜欢在命令行下操作的那种感觉，那么也可以在命令行下直接配置 git 使用代理，当然前提一样是，你懂得如何翻墙。</p>
-<p>使用上面的命令配置完之后，会在 ~/.gitconfig 文件中多出几行：</p>
-<p>你也可以使用下面的命令检查配置是否生效：</p>
-<p>另外，如果你想取消该设置，可以：</p>
-<p>配置完成后，重新 clone 一遍，可以看到速度得到了极大的提升！</p>
-<p><img src="http://www.aneasystone.com/usr/uploads/2015/08/3353057308.png" alt="git-faster.png"></p>
-<h3 id="题外话：在命令行中如何使用代理？"><a href="#题外话：在命令行中如何使用代理？" class="headerlink" title="题外话：在命令行中如何使用代理？"></a>题外话：在命令行中如何使用代理？</h3><p>要注意的是使用 <code>git config --global</code> 配置的代理只能供 git 程序使用，如果你希望让命令行中的其他命令也能自动使用代理，譬如 curl 和 wget 等，可以使用下面的方法：</p>
-<p>这样配置完成后，所有命令行中的 HTTP 和 HTTPS 请求都会自动通过代理来访问了。如果要取消代理设置，可以：</p>
-<p>还有一点要注意的是，使用 http_proxy 和 https_proxy 只对 HTTP 和 HTTPS 请求有效，所以当你 ping www.google.com 的时候如果 ping 不通的话，也就没什么大惊小怪的了。</p>
-<h3 id="题外话：如何使用-PAC-文件？"><a href="#题外话：如何使用-PAC-文件？" class="headerlink" title="题外话：如何使用 PAC 文件？"></a>题外话：如何使用 PAC 文件？</h3><p>有时候我们会使用 git 访问不同的 git 仓库，譬如 GitHub，或者 Git@OSC， 或者你自建的 Git 服务器，但是只想访问 GitHub 的时候使用代理，访问其他的仓库不要使用代理。这时候我们似乎可以使用 PAC 来解决这个问题。<a href="https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%90%86%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">PAC</a> （代理自动配置）正是用于浏览器来根据不同的 URL 自动采用不同的代理的一项技术，该文件包含一个 <code>FindProxyForURL</code> Javascript 函数，用于根据 URL 来返回不同的代理。</p>
-<p>但是遗憾的是，目前 git 似乎还不支持 PAC 文件，但我们可以打开 PAC 文件找到代理的地址，然后通过上面的方法来配置或取消配置，只是有些繁琐。<strong>也许可以写个脚本来解析 PAC 文件，并将 git 包装下，来实现自动切换代理，有机会尝试下。</strong></p>
-<h2 id="四、其他方法"><a href="#四、其他方法" class="headerlink" title="四、其他方法"></a>四、其他方法</h2><p>网上还提供了很多其他的方法，但是我暂未尝试过，且记录一下：</p>
-<ul>
-<li>ssh tunnel 或者 shadowsocks</li>
-<li>ss + proxychains</li>
-<li>使用境外的 VPS</li>
-<li>powerpac</li>
-<li>VPN</li>
-</ul>
-
-          
+<h1 id="git-clone-太慢怎么办？"><a href="#git-clone-太慢怎么办？" class="headerlink" title="git clone 太慢怎么办？"></a>git clone 太慢怎么办？</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/23/CocoaPods-git-clone-巨慢的解决方案/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
