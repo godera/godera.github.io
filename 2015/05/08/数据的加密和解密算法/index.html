@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="客户端用户隐私数据传输加/解密方案（草案）一、起因与概论为避免网路上明文传输，增强对用户隐私的保护，故制定本方案。本方案可以概括为：密钥随机并经RSA加密的AES加密算法。主体加密是AES加密，AES密码经RSA加密。本方案加密的主体是客户端和服务端传输过程中的用户隐私数据，即需要验证用户ID和Token的数据，非用户隐私数据不做加密处理。 二、方案要点">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据的加密和解密算法">
+<meta property="og:url" content="http://godera.org/2015/05/08/数据的加密和解密算法/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="客户端用户隐私数据传输加/解密方案（草案）一、起因与概论为避免网路上明文传输，增强对用户隐私的保护，故制定本方案。本方案可以概括为：密钥随机并经RSA加密的AES加密算法。主体加密是AES加密，AES密码经RSA加密。本方案加密的主体是客户端和服务端传输过程中的用户隐私数据，即需要验证用户ID和Token的数据，非用户隐私数据不做加密处理。 二、方案要点">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://godera.org/images/encryptionFlow.jpg">
+<meta property="og:image" content="http://godera.org/images/iOSEncryptedCode.png">
+<meta property="og:image" content="http://godera.org/images/encrypedTimes.jpg">
+<meta property="og:updated_time" content="2018-01-23T10:48:18.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据的加密和解密算法">
+<meta name="twitter:description" content="客户端用户隐私数据传输加/解密方案（草案）一、起因与概论为避免网路上明文传输，增强对用户隐私的保护，故制定本方案。本方案可以概括为：密钥随机并经RSA加密的AES加密算法。主体加密是AES加密，AES密码经RSA加密。本方案加密的主体是客户端和服务端传输过程中的用户隐私数据，即需要验证用户ID和Token的数据，非用户隐私数据不做加密处理。 二、方案要点">
+<meta name="twitter:image" content="http://godera.org/images/encryptionFlow.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2015/05/08/数据的加密和解密算法/"/>
+
+
+
+
+
+  <title>数据的加密和解密算法 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/05/08/数据的加密和解密算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据的加密和解密算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-08T19:06:26+08:00">
+                2015-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>客户端用户隐私数据传输加/解密方案（草案）<br>一、起因与概论<br>为避免网路上明文传输，增强对用户隐私的保护，故制定本方案。<br>本方案可以概括为：密钥随机并经RSA加密的AES加密算法。<br>主体加密是AES加密，AES密码经RSA加密。<br>本方案加密的主体是客户端和服务端传输过程中的用户隐私数据，即需要验证用户ID和Token的数据，非用户隐私数据不做加密处理。</p>
+<p>二、方案要点<br><a id="more"></a><br>方案目前仅针对文本参数加密，图片、音频、视频加密尚在调研，具体在客户端请求统一成一个出口之后再行调研、实施；<br>AES密钥用256位，RSA用1024位；<br>AES密钥由客户端随机生成 并注册到服务端；<br>AES密钥在APP运行期间只能生成一次，是单例；<br>AES密钥传输的时候要经RSA加密，RSA密钥对是预先生成的，分别放在两端，用于第一次加密；安卓和iOS各用一对；安卓需要通过措施保证密钥的安全性；<br>用户打开APP后的每一个请求都可能负有密钥注册的责任；<br>      服务端需要建立起 设备ID+用户ID+用户Token 联合键和AES密钥的对应关系；<br>      服务端AES密钥存储建议用RSA加密后数据而非明文；<br>      客户端的AES密钥需要用RSA加密后数据；<br>AES密钥的有效期是 某个设备上的APP的运行期；<br>用户不需要使用APP时需反注册密钥，必传参数是 _di、_ui、_tk；<br>服务端也可定期（每天？）清理失效的密钥（注册了一个月的？）<br>客户端向服务端注册AES密钥的前提条件是：设备ID+用户ID+用户Token都存在，也就是说客户端需要有一个判断是否可以加密的函数，函数体是判断设备ID+用户ID+用户Token三者是否都合法，如果合法就加密传输，如果不合法就不用加密传输；<br>请求参数字典结构如下：<br>    <code>{  
+    _di = 经RSA加密后的设备唯一ID；（必传）  
+    _ui = 经RSA加密后的用户ID；（必传）  
+    _tk = 经RSA加密后的用户Token；（必传）  
+    _p = 请求参数整体AES加密后的数据；（必传）  
+    _k = 经RSA加密后的AES密钥（在服务端密钥注册成功后即不再传）  
+    }</code><br>服务端在注册AES Key的时候需要验证用户的权限，保证合法注册。<br>响应结构如下：<br>    <code>{  
+    _r = 服务端响应整体AES加密后的数据；（必传）  
+    _kr = 1或2（1代表注册成功，2代表失败，请求字典无 _ek 参数即不需传）  
+    }</code><br>服务端在注册失败时，即可判定用户权限受限，返回错误信息。<br>_p、_r均为关键字，是服务端、客户端判断数据是否加密的标识。下划线代表特殊用途参数。<br>加密请求另起一个类，以前的请求逐步替换成加密请求。</p>
+<p>三、方案流程图<br><img src="/images/encryptionFlow.jpg" alt="方案流程图"> </p>
+<p>四、AES密钥生成（以iOS为例）<br><img src="/images/iOSEncryptedCode.png" alt="AES密钥生成_iOS"> </p>
+<p>附录1、加密方式简略介绍<br>一、对称加密<br>1、介绍：<br>　　对称加密(也叫私钥加密)指加密和解密使用相同密钥的加密算法。有时又叫传统密码算法或单密钥算法。它要求发送方和接收方在安全通信之前，商定一个密钥。对称算法的安全性依赖于密钥，泄漏密钥就意味着任何人都可以对他们发送或接收的消息解密，所以密钥的保密性对通信性至关重要。<br>2、优点：<br>　　对称加密算法的特点是算法公开、计算量小、加密速度快、加密效率高。<br>3、缺点：<br>　　不足之处是，交易双方都使用同样钥匙，安全性得不到保证。此外，每对用户每次使用对称加密算法时，都需要使用其他人不知道的惟一钥匙，这会使得发收信双方所拥有的钥匙数量呈几何级数增长，密钥管理成为用户的负担。对称加密算法在分布式网络系统上使用较为困难，主要是因为密钥管理困难，使用成本较高。而与公开密钥加密算法比起来，对称加密算法能够提供加密和认证却缺乏了签名功能，使得使用范围有所缩小。在计算机专网系统中广泛使用的对称加密算法有DES和IDEA等。美国国家标准局倡导的AES即将作为新标准取代DES。<br>4、常用算法<br>AES：　　在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院（NIST）于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。</p>
+<p>二、非对称加密<br>1、介绍：<br>　　与对称加密算法不同，非对称加密算法需要两个密钥：公开密钥（publickey）和私有密钥（privatekey）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。<br>2、优点：<br>　　非对称加密与对称加密相比，其安全性更好：对称加密的通信双方使用相同的密钥，如果一方的密钥遭泄露，那么整个通信就会被破解。而非对称加密使用一对密钥，一个用来加密，一个用来解密，而且公钥是公开的，密钥是自己保存的，不需要像对称加密那样在通信之前要先同步密钥。<br>3、缺点：<br>　　非对称加密的缺点是加密和解密花费时间长、速度慢，只适合对少量数据进行加密。<br>4、常用算法<br>RSA：　　RSA是目前最有影响力的公钥加密算法，它能够抵抗到目前为止已知的绝大多数密码攻击，已被ISO推荐为公钥数据加密标准。<br>今天只有短的RSA钥匙才可能被强力方式解破。到2008年为止，世界上还没有任何可靠的攻击RSA算法的方式。只要其钥匙的长度足够长，用RSA加密的信息实际上是不能被解破的。但在分布式计算和量子计算机理论日趋成熟的今天，RSA加密安全性受到了挑战。<br>RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但是想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。在公开密钥加密和电子商业中RSA被广泛使用。</p>
+<p>附录2：业界流行客户端加密方式汇总<br>1、微信公众号：AES加密<br>2、微信支付：RSA加密<br>3、微信IM：基于RSA加密、AES随机密钥加密；<br>其中RSA是1024位，AES是128位。<br>是社交软件的主流加密方式。<br>4、QQ：先后用过TEA和RSA两种加密方式，RSA是针对每个对话都会生成一对钥匙的。<br>5、支付宝：<br>　　1)      一次一密的公钥对<br>　　每次登陆都由服务器生成一公钥对(private_key, public_key),浏览器从服务器获取public_key,用它加密口令。这样口令密文每次都在变，只有拥有私钥的服务器才能解密口令。韩国某知名游戏的网页登陆采用过这种登陆方法。<br>　　2)      RSA公钥加密<br>　　学习SSL，由客户端生成随机密钥Key，此key用服务器的公钥加密后发送到服务器，服务器用私钥解密得到密钥key。服务器和浏览器通过这个随机密钥key来保护登陆口令。<br>6、淘宝：用md5、hmac</p>
+<p>附录3：设备AES256加密速度比较<br>测试文件为45.1M的视频数据<br>安卓的未补全<br><img src="/images/encrypedTimes.jpg" alt="方案流程图"> </p>
+<p>同步时的zip包加密</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/06/iOS判断类有无和方法响应否的办法/" rel="next" title="iOS判断类有无和方法响应否的办法">
+                <i class="fa fa-chevron-left"></i> iOS判断类有无和方法响应否的办法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/27/Cocoa-编码规范0-1/" rel="prev" title="Cocoa 编码规范0.1">
+                Cocoa 编码规范0.1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

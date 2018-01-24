@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Unix_Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1/2 缅怀作者 (转)　　W.Richard Stevens（1951-1999），国际知名的UNIX和网络专家，受人尊敬的作家。他的著作有《UNIX网络编程》(两卷本)、《UNIX环境高级编程》、《TCP/IP详解》(三卷本)等，同时他还是广受欢迎的教师和顾问。　　Stevens先生1951年生于赞比亚。早年，他就读于美国弗吉尼亚州的费什本军事学校，后获得密歇根大学学士、亚利桑那大学系统工程硕">
+<meta name="keywords" content="Unix_Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《TCP&#x2F;IP详解 卷1：协议》">
+<meta property="og:url" content="http://godera.org/2017/02/17/《TCP-IP详解-卷1：协议》/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="1/2 缅怀作者 (转)　　W.Richard Stevens（1951-1999），国际知名的UNIX和网络专家，受人尊敬的作家。他的著作有《UNIX网络编程》(两卷本)、《UNIX环境高级编程》、《TCP/IP详解》(三卷本)等，同时他还是广受欢迎的教师和顾问。　　Stevens先生1951年生于赞比亚。早年，他就读于美国弗吉尼亚州的费什本军事学校，后获得密歇根大学学士、亚利桑那大学系统工程硕">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T10:47:57.721Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《TCP&#x2F;IP详解 卷1：协议》">
+<meta name="twitter:description" content="1/2 缅怀作者 (转)　　W.Richard Stevens（1951-1999），国际知名的UNIX和网络专家，受人尊敬的作家。他的著作有《UNIX网络编程》(两卷本)、《UNIX环境高级编程》、《TCP/IP详解》(三卷本)等，同时他还是广受欢迎的教师和顾问。　　Stevens先生1951年生于赞比亚。早年，他就读于美国弗吉尼亚州的费什本军事学校，后获得密歇根大学学士、亚利桑那大学系统工程硕">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2017/02/17/《TCP-IP详解-卷1：协议》/"/>
+
+
+
+
+
+  <title>《TCP/IP详解 卷1：协议》 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2017/02/17/《TCP-IP详解-卷1：协议》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《TCP/IP详解 卷1：协议》</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-17T12:49:46+08:00">
+                2017-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="1-2-缅怀作者-转"><a href="#1-2-缅怀作者-转" class="headerlink" title="1/2 缅怀作者 (转)"></a>1/2 缅怀作者 (转)</h5><p>　　W.Richard Stevens（1951-1999），国际知名的UNIX和网络专家，受人尊敬的作家。他的著作有《UNIX网络编程》(两卷本)、《UNIX环境高级编程》、《TCP/IP详解》(三卷本)等，同时他还是广受欢迎的教师和顾问。<br>　　Stevens先生1951年生于赞比亚。早年，他就读于美国弗吉尼亚州的费什本军事学校，后获得密歇根大学学士、亚利桑那大学系统工程硕士和博士学位。他曾就职于基特峰国家天文台，从事计算机编程。<br>　　Stevens先生不幸病逝于1999年9月1日，他的离去是计算机界的巨大损失。<br>　　1999年9月1日，著名的TCP/IP,UNIX技术专家、作家和教育家W.Richard Stevens与世长辞，享年48岁。他留下的6本书——《Advanced Programming in the UNIX Environment》，《UNIX Network Programming Volume 1,2》，《TCP/IP Illustracted Volume 1,2,3》——是每一个严肃的程序员必读的功课；尤其是《TCP/IP Illustracted Volume 1》已经达到了讲解TCP/IP圣经级别的书。<br>　　作为他的读者，我要在这里对他表示自己最崇高的尊敬：在学习网络编程的过程中，最直接、最重要的领悟都是来自于他的文字。无法忘记那个读通《UNIX Network Programming》的夜晚，兴奋的我竟然无法入睡。所以对由于Stevens去世造成其第３卷无法出版的事实，我一直很是遗憾。缺少了这最重要的第３卷，《UNIX Network Programming》永远是不完整的……(幸好我们还有Douglas C. Schmidt和他的ACE。感谢上帝)<br>　　作为一个铜矿家庭的后代，Stevens并没有选择获取财富的人生，他选择的是活在每个程序员的心中，活在无处不在的internet上面。当他去世后的第２年，他的妹妹和遗孀替他领奖的时候，她们被大家对他的尊敬所震撼，她们没有想到平时很普通的Stevens竟然有这么多的朋友这么多的读者……</p>
+<h5 id="2-2-章节目录-转"><a href="#2-2-章节目录-转" class="headerlink" title="2/2 章节目录 (转)"></a>2/2 章节目录 (转)</h5><p> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/1/" target="_blank" rel="noopener">第1章 概述</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/2/" target="_blank" rel="noopener">第2章 链路层</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/3/" target="_blank" rel="noopener">第3章 IP：网际协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/4/" target="_blank" rel="noopener">第4章 ARP：地址解析协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/5/" target="_blank" rel="noopener">第5章 RARP：逆地址解析协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/6/" target="_blank" rel="noopener">第6章 ICMP：Internet控制报文协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/7/" target="_blank" rel="noopener">第7章 Ping程序</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/8/" target="_blank" rel="noopener">第8章 Traceroute程序</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/9/" target="_blank" rel="noopener">第9章 IP选路</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/10/" target="_blank" rel="noopener">第10章 动态选路协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/11/" target="_blank" rel="noopener">第11章 UDP：用户数据报协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/12/" target="_blank" rel="noopener">第12章 广播和多播</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/13/" target="_blank" rel="noopener">第13章 IGMP：Internet组管理协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/14/" target="_blank" rel="noopener">第14章 DNS：域名系统</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/15/" target="_blank" rel="noopener">第15章 TFTP：简单文件传送协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/16/" target="_blank" rel="noopener">第16章 BOOTP: 引导程序协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/17/" target="_blank" rel="noopener">第17章 TCP：传输控制协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/18/" target="_blank" rel="noopener">第18章 TCP连接的建立与终止</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/19/" target="_blank" rel="noopener">第19章 TCP的交互数据流</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/20/" target="_blank" rel="noopener">第20章 TCP的成块数据流</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/21/" target="_blank" rel="noopener">第21章 TCP的超时与重传</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/22/" target="_blank" rel="noopener">第22章 TCP的坚持定时器</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/23/" target="_blank" rel="noopener">第23章 TCP的保活定时器</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/24/" target="_blank" rel="noopener">第24章 TCP的未来和性能</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/25/" target="_blank" rel="noopener">第25章 SNMP：简单网络管理协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/26/" target="_blank" rel="noopener">第26章 Telnet和Rlogin：远程登录</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/27/" target="_blank" rel="noopener">第27章 FTP：文件传送协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/28/" target="_blank" rel="noopener">第28章 SMTP：简单邮件传送协议</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/29/" target="_blank" rel="noopener">第29章 网络文件系统</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/30/" target="_blank" rel="noopener">第30章 其他的TCP/IP应用程序</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/a/" target="_blank" rel="noopener">附录A tcpdump程序</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/b/" target="_blank" rel="noopener">附录B 计算机时钟</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/c/" target="_blank" rel="noopener">附录C sock程序</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/d/" target="_blank" rel="noopener">附录D 部分习题的解答</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/e/" target="_blank" rel="noopener">附录E 配置选项</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/f/" target="_blank" rel="noopener">附录F 可以免费获得的源代码</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/g/" target="_blank" rel="noopener">附录G 参考文献</a><br> <a href="http://docs.52im.net/extend/docs/book/tcpip/vol1/h/" target="_blank" rel="noopener">附录H 缩略语</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-Linux/" rel="tag"># Unix_Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/14/iOS-Project-Git-Ignore/" rel="next" title="iOS Project Git Ignore">
+                <i class="fa fa-chevron-left"></i> iOS Project Git Ignore
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/10/Cocoa-依赖管理/" rel="prev" title="Cocoa 依赖管理">
+                Cocoa 依赖管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-缅怀作者-转"><span class="nav-number">1.</span> <span class="nav-text">1/2 缅怀作者 (转)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-章节目录-转"><span class="nav-number">2.</span> <span class="nav-text">2/2 章节目录 (转)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

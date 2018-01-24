@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="###iOS抓包工具有 Charles、HTTPScoop、Wireshark、RVI+tcpdump+tcprewrite 等等： ###一、CharlesCharles官网 http://www.charlesproxy.com/需要一个路由连接Mac和iOS设备，iOS设备通过代理转到Mac上请求a、HTTP抓包1、打开Charles程序2、查看Mac电脑的IP地址，如192.168.1.7">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS抓包工具介绍">
+<meta property="og:url" content="http://godera.org/2016/01/11/iOS抓包工具介绍/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="###iOS抓包工具有 Charles、HTTPScoop、Wireshark、RVI+tcpdump+tcprewrite 等等： ###一、CharlesCharles官网 http://www.charlesproxy.com/需要一个路由连接Mac和iOS设备，iOS设备通过代理转到Mac上请求a、HTTP抓包1、打开Charles程序2、查看Mac电脑的IP地址，如192.168.1.7">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T10:48:29.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS抓包工具介绍">
+<meta name="twitter:description" content="###iOS抓包工具有 Charles、HTTPScoop、Wireshark、RVI+tcpdump+tcprewrite 等等： ###一、CharlesCharles官网 http://www.charlesproxy.com/需要一个路由连接Mac和iOS设备，iOS设备通过代理转到Mac上请求a、HTTP抓包1、打开Charles程序2、查看Mac电脑的IP地址，如192.168.1.7">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2016/01/11/iOS抓包工具介绍/"/>
+
+
+
+
+
+  <title>iOS抓包工具介绍 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/01/11/iOS抓包工具介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS抓包工具介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-11T16:38:26+08:00">
+                2016-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###iOS抓包工具有 Charles、HTTPScoop、Wireshark、RVI+tcpdump+tcprewrite 等等：</p>
+<p>###一、Charles<br>Charles官网 <a href="http://www.charlesproxy.com/" target="_blank" rel="noopener">http://www.charlesproxy.com/</a><br>需要一个路由连接Mac和iOS设备，iOS设备通过代理转到Mac上请求<br>a、HTTP抓包<br>1、打开Charles程序<br>2、查看Mac电脑的IP地址，如192.168.1.7<br>3、打开iOS设置，进入当前WiFi连接，设置HTTP代理Group，将服务器填为上一步中获得的IP，即192.168.1.7，端口填8888<br>4、iOS设备打开你要抓包的APP进行网络操作<br>5、Charles弹出确认框，点击Allow按钮即可<br>b、HTTPS抓包<br>1、在 iOS 设备上打开这个网址 <a href="http://www.charlesproxy.com/getssl" target="_blank" rel="noopener">http://www.charlesproxy.com/getssl</a> 安装 Charles SSL 证书<br>2、在Charles的工具栏上点击设置按钮，选择Proxy Settings…<br>3、切换到SSL选项卡，选中Enable SSL Proxying，别急，选完先别关掉，还有下一步。这一步跟Fiddler不同，Fiddler安装证书后就可以抓HTTPS网址的包了，Charles则麻烦一些，需要在上一步的SSL选项卡的Locations表单填写要抓包的域名和端口，点击Add按钮，在弹出的表单中Host填写域名，比如填api.instagram.com，Port填443<br>4、接下来就跟HTTP抓包一样了<br>参考文章：<a href="http://www.99css.com/1272/" target="_blank" rel="noopener">http://www.99css.com/1272/</a></p>
+<p>###二、HTTPScoop<br>需要 Mac 一边连广域网、一边用无线网卡开网络共享给iOS设备，然后抓取该网络共享的无线网卡的包</p>
+<p>###三、Wireshark太强大以致用不了</p>
+<p>###四、RVI+tcpdump+tcprewrite<br>需求：iOS系统要求5.0以上，拥有Mac OS 并且安装XCode</p>
+<p>Apple在iOS5.0以上增加了RVI(Remote Virtual Interface）,打开它非常简单，只需要把iOS设备通过usb连接到Mac上，然后打开“终端”，输入</p>
+<p>rvictl -s [Your Device’s UDID]<br>然后在终端上会显示</p>
+<p>Starting device <strong><strong>**</strong></strong> [SUCCEEDED]<em>*</em><br>字样</p>
+<p>如果这一步产生了什么错误的话，可能是没有安装XCode或者UDID输入错误</p>
+<p>接下来在终端可以使用</p>
+<p>ifconfig -l<br>查看当前Mac上的接口，比如（不同Mac可能会有差异）：</p>
+<p>lo0 gif0 en0 en1 fw0 rvi0<br>其中rvi0就是Remote Virtual Interface，这也就意味着在你的Mac上虚拟了一个iOS设备接口,接下来就是通过tcpdump抓取这个接口上的数据包</p>
+<p> sudo tcpdump -i rvi0 -n -s 0 -w dump.pcap tcp<br>解释一下上面重要参数的含义：</p>
+<p>-i rvi0 选择需要抓取的接口为rvi0（远程虚拟接口）<br>-s 0 抓取全部数据包<br>-w dump.pcap 设置保存的文件名称<br>tcp 只抓取tcp包<br>当tcpdump运行之后，你可以在iOS设备上开始浏览你想抓取的App，期间产生的数据包均会保存到dump.pcap文件中，当想结束抓取时直接终止tcpdump即可</p>
+<p>接下来就是需要处理抓取的数据，目前通过tcpdump保存的dump.pcap保存的是原始数据，但是一些常用的抓包软件（比如Chales）是解析不了的，所以需要做一个转换。</p>
+<p>打开终端,我们需要使用tcprewrite这款工具，如果没有安装的话，可以通过HomeBrew快速安装</p>
+<p>brew install tcpreplay<br>我们需要的tcprewrite是tcpreplay套件中的一个工具，当安装完成后，输入</p>
+<p>tcprewrite –dlt=enet –enet-dmac=00:11:22:33:44:55 –enet-smac=66:77:88:99:AA:BB –infile=dump.pcap –outfile=dumpFinal.pcap<br>如果没有报错就说明转换成功，之后使用Chales打开dumpFinal.pcap就可以查看到刚才的数据包了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/28/Xcode如何生成-Managed-by-Xcode-签名/" rel="next" title="Xcode如何生成 (Managed by Xcode) 签名">
+                <i class="fa fa-chevron-left"></i> Xcode如何生成 (Managed by Xcode) 签名
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/11/iOS-APP-Documents、Library和tmp目录的用途/" rel="prev" title="iOS APP Documents、Library和tmp目录的用途">
+                iOS APP Documents、Library和tmp目录的用途 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

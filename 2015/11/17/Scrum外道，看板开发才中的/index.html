@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Scrum外行，看板开发才中的转自：infoQ.com #####Scrum简介  把组织细分成小組、跨功能、自我组织团队。  工作细分成细小、实在的交付成果，交排人员负责需求清单以及跟据重要性排优先级别，由团队估算每个项目相对工量。  把整个开发时间分成固定时长的短迭代（通常于一至四星期），在每个迭代后演示新增可发布功能。  优化发布以及跟客户一起更新优先级别，基于每个迭代后发布的观察。  优化">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrum外行，看板开发才中的">
+<meta property="og:url" content="http://godera.org/2015/11/17/Scrum外道，看板开发才中的/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="Scrum外行，看板开发才中的转自：infoQ.com #####Scrum简介  把组织细分成小組、跨功能、自我组织团队。  工作细分成细小、实在的交付成果，交排人员负责需求清单以及跟据重要性排优先级别，由团队估算每个项目相对工量。  把整个开发时间分成固定时长的短迭代（通常于一至四星期），在每个迭代后演示新增可发布功能。  优化发布以及跟客户一起更新优先级别，基于每个迭代后发布的观察。  优化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T10:48:38.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrum外行，看板开发才中的">
+<meta name="twitter:description" content="Scrum外行，看板开发才中的转自：infoQ.com #####Scrum简介  把组织细分成小組、跨功能、自我组织团队。  工作细分成细小、实在的交付成果，交排人员负责需求清单以及跟据重要性排优先级别，由团队估算每个项目相对工量。  把整个开发时间分成固定时长的短迭代（通常于一至四星期），在每个迭代后演示新增可发布功能。  优化发布以及跟客户一起更新优先级别，基于每个迭代后发布的观察。  优化">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2015/11/17/Scrum外道，看板开发才中的/"/>
+
+
+
+
+
+  <title>Scrum外行，看板开发才中的 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/11/17/Scrum外道，看板开发才中的/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scrum外行，看板开发才中的</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-17T02:05:53+08:00">
+                2015-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Scrum外行，看板开发才中的<br>转自：infoQ.com</p>
+<p>#####Scrum简介<br>  把组织细分成小組、跨功能、自我组织团队。<br>  工作细分成细小、实在的交付成果，交排人员负责需求清单以及跟据重要性排优先级别，由团队估算每个项目相对工量。<br>  把整个开发时间分成固定时长的短迭代（通常于一至四星期），在每个迭代后演示新增可发布功能。<br>  优化发布以及跟客户一起更新优先级别，基于每个迭代后发布的观察。<br>  优化过程，在每个迭代之后进行回顾</p>
+<p>#####看板开发简介<br>  工作流程形象化<br>  把工作细分成任务，写在卡纸上，贴在墙上<br>  把栏命名好，來显示任务在工作流程中的狀況<br>  限制“在制品”（work in progress，简称 WIP） – 明确设定限制在每个状态下同一时间能有多少工作任务<br>  度量生产周期（即完成一个任务的平均时间），优化开发过程，缩短开发周期和使它更易于预测。<br><a id="more"></a></p>
+<p>#####相似<br>两者都符合精益和敏捷思考<br>两者使用”拉动式”安排日程<br>两者限制开发中工作数目<br>两者是透过透明度来驱动过程开进<br>两者集中提早及衡常的付运软件<br>两者基于自我组织团队<br>两者要求把工作细分<br>在两个情况下发布计划都是基于经验数据（速度／开发周期）持续优化</p>
+<p>#####分別<br>| Scrum                        | 看板                                    |<br>| —————————- | ————————————- |<br>| 要求定时迭代                       | 没指定定时限迭代，可以分开计划、发布、过程改进，可以事件驱动而不是限定时限 |<br>| 团队在每个迭代承诺一定数目的工作             | 承诺不是必须的                               |<br>| 以速度（Velocity）作为计划和过程改进的度量数据  | 使用开发周期作为计划和过程改进的度量数据                  |<br>| 指定跨功能团队                      | 没有指定跨功能团队，也容许专门团队                     |<br>| 工作任务细分，可于一个迭代中完成             | 没有指定工作任务大小                            |<br>| 指定使用燃烧图                      | 没有指定任何图表                              |<br>| 间接限制开发中工作（每个迭代）              | 设定开发中工作的限制（每个工作流程状态）                  |<br>| 规定估算过程                       | 没有指定任何估算方式                            |<br>| 在迭代中不能加入新工作任务                | 只要生产力容许，可以随时加工作任务                     |<br>| 由单一团队负责 Sprint Backlog       | 多个团队和团员分享看板                           |<br>| 指定三个角色（产品负责人／ScrumMaster/团队） | 没有指定任何团队角色                            |<br>| Scrum board 在每个迭代后重设         | 看板反映持久开发情况                            |<br>| 规定优先化的 product backlog       | 优先级是非必须的                              |</p>
+<p>【梁评】<br>　　Scrum的着眼点是让劳动者保持稳中有增的战斗力，或者说着眼于人、时间；而看板则着眼于问题，我想这才是工作的本质：工作为解决问题而生。如果没有问题了，又何必工作呢？<br>　　Scrum让人处于一种小紧张、小忙碌的状态下，对于生活来说，这是不够完美的；而看板则悠然的多。不能悠然，又何必做人？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/16/navigationItem的正确用法/" rel="next" title="navigationItem的正确用法">
+                <i class="fa fa-chevron-left"></i> navigationItem的正确用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/17/RESTful-Web-服务四种操作POST-DELETE-PUT-GET/" rel="prev" title="RESTful WEB 服务四种操作POST/DELETE/PUT/GET">
+                RESTful WEB 服务四种操作POST/DELETE/PUT/GET <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

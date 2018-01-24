@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Unix_Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="修订于：2012/06/23标题：U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统【黑括号表示说明，中括号表菜单路径，#代表超级用户shell，&amp;gt;代表普通用户shell-tcsh】【实在是厌烦了硬盘安装，记得先后有ISOEMU、unetbootin、grub4dos+dos分区等等方法，也">
+<meta name="keywords" content="Unix_Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统">
+<meta property="og:url" content="http://godera.org/2012/06/23/U盘安装FreeBSD9-Xfce4桌面，boot0启动XP、FreeBSD、Ubuntu三系统/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="修订于：2012/06/23标题：U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统【黑括号表示说明，中括号表菜单路径，#代表超级用户shell，&amp;gt;代表普通用户shell-tcsh】【实在是厌烦了硬盘安装，记得先后有ISOEMU、unetbootin、grub4dos+dos分区等等方法，也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://godera.org/images/desktop_freebsd_xfce4.png">
+<meta property="og:updated_time" content="2018-01-23T10:48:40.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统">
+<meta name="twitter:description" content="修订于：2012/06/23标题：U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统【黑括号表示说明，中括号表菜单路径，#代表超级用户shell，&amp;gt;代表普通用户shell-tcsh】【实在是厌烦了硬盘安装，记得先后有ISOEMU、unetbootin、grub4dos+dos分区等等方法，也">
+<meta name="twitter:image" content="http://godera.org/images/desktop_freebsd_xfce4.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2012/06/23/U盘安装FreeBSD9-Xfce4桌面，boot0启动XP、FreeBSD、Ubuntu三系统/"/>
+
+
+
+
+
+  <title>U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2012/06/23/U盘安装FreeBSD9-Xfce4桌面，boot0启动XP、FreeBSD、Ubuntu三系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-06-23T22:24:33+08:00">
+                2012-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/desktop_freebsd_xfce4.png" alt="桌面图"><br>修订于：2012/06/23<br>标题：U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统<br>【黑括号表示说明，中括号表菜单路径，#代表超级用户shell，&gt;代表普通用户shell-tcsh】<br>【实在是厌烦了硬盘安装，记得先后有ISOEMU、unetbootin、grub4dos+dos分区等等方法，也是一个接着一个失效，现在都装不了9.0了，听说又有mfsbsd可以硬盘安装9.0，可是我已经提不起兴趣了，不如U盘安装来的不善变，因此有了此文】<br><a id="more"></a><br>内容：<br>〇、环境：Thinkpad X61——2G内存、X3100显卡、112G硬盘、1个U盘，ADSL，已装有XP，硬盘分区如下：<br>[1]05G-主分区-XP的系统分区 -ada0s1-(hd0,0)<br>[2]36G-主分区-给FB留的分区 -ada0s2-(hd0,1)<br>[3]15G-主分区-Linux的根分区-ada0s3-(hd0,2)<br>[4]56G-扩展分区-ada0s4-(hd0,3)<br>[4.1]02G-逻辑分区-Linux的swap分区-ada0s5-(hd0,4)<br>[4.2]03G-逻辑分区-XP的备份分区 -ada0s6-(hd0,5)<br>[4.3]51G-逻辑分区-XP的用户分区 -ada0s7-(hd0,6)  </p>
+<p>一、前期准备：【amd64是64位的，i386是32位的】<br>1、FreeBSD的DOC和WIKI：<code>www.freebsd.org/doc/zh_CN/，wiki.freebsdchina.org</code><br>2、下载memstick.img、Win32DiskImager：<br>memstick.img下载地址：<br><code>http://mirrors.163.com/FreeBSD/releases/ISO-IMAGES/9.0/</code><br>【备用：<code>ftp://ftp.cn.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/9.0/】</code><br>Win32DiskImager下载地址：<code>http://pan.baidu.com/netdisk/singlepublic?fid=204864_1334505933</code><br>3、直接在XP下格式化U盘至正确容量，然后用Win32DiskImager将memstick.img写入U盘<br>4、重启，设置BIOS由U盘启动，进入FreeBSD安装程序【我的电脑在启动时按F12就会进入引导选择项】  </p>
+<p>二、安装FreeBSD基本系统<br>【9.0开始启用的bsdinstaller对于新手来说比sysinstaller清晰多了】<br>【bsdinstaller的操作方法：上下键选择选项，空格更改选中与否；左右键选择“确认”或“取消”，回车键执行】<br>1、键盘映射选NO，用默认的键盘映射；<br>2、域名(hostname)填完整域名，我填的是free.bsd.cn；<br>3、系统套件选[src]，base、kernel、man都包含在基本系统里，会自动安装；【若装64位，只需加上lib32(32位兼容库)就行】<br>4、分区选手动(Manual)，删除预留分区重建，记得看屏幕最下面一行的提示；<br>标准的FreeBSD GPT分区分为：freebsd-boot、freebsd-ufs、freebsd-swap；<br>我的分区方案：/-800M，swap-1G，/var-1500M，/tmp-500M，/usr-10G，/home-剩下的；<br>9.0的SATA硬盘的符号由ad4变成了ada0了；<br>5、网卡部分选IPv4，不要DHCP，手动配置地址为192.168.1.2，子网掩码255.255.255.0，默认路由192.168.1.1；IPv6我没要；Resolver部分都不用填，直接OK就行，ADSL拨号后会自动添加DNS；<br>6、时钟我选的是本地时间，不用UTC，用CST；选NO后弹出CST菜单，依次选Asia-&gt;China-&gt;eastChina；<br>7、Services因为我是做桌面用，又用的是USB鼠标，所以只选了powerd；<br>8、dump因为我不会调试，故也未选；<br>9、添加普通用户注意group填wheel，shell我选的是tcsh，相应的提示符为”&gt;”；<br>10、开启shell，运行以下命令：<br><code>#gpart bootcode -b /boot/boot0 ada0</code>【安装FreeBSD的boot0】<br><code>#reboot</code><br>【boot0的优点：不需要像grub那样依赖分区上的文件，所以删了分区照样能用】<br>【Linux安装注意：grub不能安装在mbr上，应该安装在Linux根分区上】</p>
+<p>三、拷贝本文档至FreeBSD下：<br>回到XP下，格式化U盘至正确容量【FAT32格式，可能需要格两次】，<br>拷贝本文档到U盘，并改为英文名字，<br>在FreeBSD下用以下命令加载U盘：<br><code>#mount_msdosfs /dev/da0 /mnt</code>【设备名也有可能是da0s1或da0a等，ls /dev一下看看】<br><code>#cp /mnt/*.txt .</code><br><code>#umount /mnt</code><br>用ALT+F2开tty1、在其下用ee查看本文档和复制命令，再在tty0下进行命令的粘贴和运行</p>
+<p>四、CPU自动降频<br><code>#ee /etc/rc.conf</code><br>在 powerd_enable=”YES” 下面添加：<br><code>powerd_flags=&quot;-a adp -b adp -n adp -m 500 -M 1200″</code>【夏天来了，设定CPU的频率为500-1200，有效防止高温】<br><code>#ee /boot/loader.conf</code> 添加：<br><code>acpi_ibm_load=&quot;YES&quot;</code> 【ibm笔记本acpi扩展模块】</p>
+<p>五、ADSL拨号<br>1、修改配置文件<br><code>#ee /etc/ppp/ppp.conf</code> 修改其内容为：<br>【注意：default和adsl行都顶格；其他行的首字符是空格，如果也顶格，系统会提示少了colon继而拨号失败】<br>【网络是非常重要的，如果在这一关卡了，估计新手都会发疯的】<br><code>default:</code><br><code>set log Phase tun command</code><br><code>enable dns</code>【动态获取外网域名服务器地址】<br><code>adsl:</code><br><code>set device PPPoE:em0:pppoe-in</code>【em0是网卡设备名，可用ifconfig查得】<br><code>set authname ****</code>【ADSL用户名】<br><code>set authkey ****</code>【拨号密码；FreeBSD的拨号密码竟然还是明码，不过这个似乎也不是很重要吧】<br><code>set dial</code><br><code>set login</code><br><code>set redial 0 0</code><br><code>set ifaddr 10.0.0.1/0 10.0.0.2/0</code>【auto方式拨号必须写的】<br><code>add default HISADDR</code>【加入默认路由，保存在/etc/resolv.conf文件里】  </p>
+<p><code>#ppp -ddial adsl</code> 【手动拨号先】  </p>
+<p>2、开机自动拨号的设置<br><code>#ee /etc/rc.conf</code> 添加：<br><code>ppp_enable=&quot;YES&quot;</code><br><code>ppp_mode=&quot;ddial&quot;</code><br><code>ppp_profile=&quot;adsl&quot;</code>  </p>
+<p>六、FreeBSD的二进制补丁安装<br><code>#ee /etc/freebsd-update.conf</code><br>修改 ServerName 为163镜像点：<br><code>freebsd-updates.mirrors.163.com</code><br><code>#freebsd-update fetch</code> 【补丁获取；有些是二进制包，有些是源码】<br><code>#freebsd-update install</code>【补丁安装；源码补丁需要编译内核后才生效，编译内核请参考本文第十节】  </p>
+<p>七、软件安装环境的配置<br>1、ports 同步【比csup方式快的不是一点点】<br><code>#ee /etc/portsnap.conf</code><br>修改 SERVERNAME 为 国内镜像点：<br><code>portsnap.hshh.org</code>【电信】<br><code>portsnap2.hshh.org</code>【电信】<br><code>portsnap3.hshh.org</code>【网通】<br><code>#portsnap fetch extract</code>【更新ports用 portsnap update】<br>【ports里查询软件所在目录：程序名全知用whereis；模糊查询用echo，比如输入 <code>echo /usr/ports/*/*flashplugin*</code> 查询名字中有flashplugin的软件ports】<br>2、设置二进制安装和源码安装抓取路径【个人喜欢以二进制安装为主，源码安装为辅；推荐163镜像，可惜sohu镜像不支持FB】<br><code>#ee /root/.cshrc</code> 添加：【设置二进制安装抓取路径】<br><code>setenv PACKAGESITE ftp://ftp.tw.freebsd.org/pub/ports/i386/packages-9.0-release/Latest/</code><br>【备用：<code>setenv PACKAGESITE ftp://ftp.cn.freebsd.org/pub/FreeBSD/ports/i386/packages-9.0-release/Latest/</code>】<br><code>#exit</code>【重登录一下】<br><code>#ee /etc/make.conf</code> 添加：【设置源码安装抓取路径】<br><code>MASTER_SITE_BACKUP?=\</code><br><code>http://mirrors.163.com/FreeBSD/distfiles/${DIST_SUBDIR}/\</code><br><code>ftp://ftp.cn.freebsd.org/pub/FreeBSD/distfiles/${DIST_SUBDIR}/\</code><br><code>ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/${DIST_SUBDIR}/</code><br><code>MASTER_SITE_OVERRIDE?=${MASTER_SITE_BACKUP}</code>  </p>
+<p>八、xorg的安装、显卡驱动和Xfce4的安装配置【FB9.0的声卡驱动被默认放在了内核中】<br>1、安装xorg-minimal<br><code>#pkg_add -r xorg-minimal</code>【xorg里集成了大量显卡的开源驱动，xorg-minimal二进制包里只有vesa卡驱动】<br><code>#pkg_add -r xf86-video-intel</code>【安装显卡驱动，在 /usr/ports/x11-drivers 里可查得】<br><code>#pkg_add -r xf86-video-fbdev xkbcomp</code>【xorg-minimal提示少了他们俩】<br>2、设置xorg开机启动<br><code>#ee /etc/rc.conf</code> 添加：<br><code>dbus_enable=&quot;YES&quot;</code><br><code>hald_enable=&quot;YES&quot;</code><br><code>polkit_enable=&quot;YES&quot;</code><br>3、安装Xfce4<br><code>#pkg_add -r xfce4</code><br>4、Xfce4开机启动<br><code>&gt;ee ~/.login</code> 添加：【是普通用户的，最好别设在全局文件/etc/csh.login里】<br><code>exec /usr/local/bin/startxfce4</code><br>5、Xfce中文化<br>5.1设置语言变量<br><code>&gt;ee ~/.cshrc</code> 添加：【如果用的是bsh系列，需要做相应的改变】<br><code>setenv LANG zh_CN.UTF-8</code><br><code>setenv LC_ALL zh_CN.UTF-8</code><br>5.2、安装文泉驿中文字体【字体美化见本文第九节的第8小节】<br><code>#pkg_add -r wqy-fonts</code>【伟大的开源字体】<br>5.3、安装中文输入法<br><code>#pkg_add -r zh-ibus-pinyin</code><br><code>&gt;ee ~/.cshrc</code> 添加：<br><code>setenv XIM ibus</code><br><code>setenv GTK_IM_MODULE ibus</code><br><code>setenv QT_IM_MODULE xim</code><br><code>setenv XMODIFIERS @im=ibus</code><br><code>setenv XIM_PROGRAM ibus-daemon</code><br><code>setenv XIM_ARGS “–daemonize –xim&quot;</code><br>【如果输入法调不出来，请在[设置/IBus设置/输入法]选项卡里选择】<br>【貌似ibus不能光标跟随，安装卸载scim能让ibus实现光标跟随，具体原因未查明，命令：#pkg_add -r scim &amp;&amp; pkg_delete ‘<em>scim</em>’】  </p>
+<p>reboot重启进入桌面后打开终端输入su取得root权限，继续下面的配置  </p>
+<p>九、常用软件包的安装和设置<br>1、FireFox的安装与中文化【还可以安装chromium——[首选项/高级设置/网页内容/自定义字体]设置字体】<br><code>#pkg_add -r firefox-i18n</code>【firefox会因为被依赖而安上；Tools/Add-ons/Extensions开启Quick Locale Switcher，Tools/Add-ons/Languages开启Chinese Simplified(zh-CN)，重启FF后选择菜单Tools/Quick Locale Switcher/Options/General，勾上User Interface Language，然后选择菜单Tools/Quick Locale Switcher下的zh-CN-Chinese(PRC)，重启FF后显示为中文界面；FF装的是9.0.1版的】<br>2、flashplugin的安装<br><code>#kldload linux</code><br><code>#ee /etc/rc.conf</code> 添加：<br><code>linux_enable=&quot;YES&quot;</code><br><code>#pkg_add -r linux_base-f10 nspluginwrapper</code><br><code>#cd /usr/ports/www/linux-f10-flashplugin11 &amp;&amp; make install clean</code><br><code>#mkdir /usr/local/lib/browser_plugins/</code><br><code>#ln -s /usr/local/lib/npapi/linux-f10-flashplugin/libflashplayer.so /usr/local/lib/browser_plugins/</code><br><code>#exit</code><br><code>&gt;nspluginwrapper -v -a -i</code>【在用户shell下执行，然后再su取得root权限】<br><code>#mount -t linprocfs linproc /compat/linux/proc</code><br><code>#ee /etc/fstab</code> 添加：<br><code>linproc /compat/linux/proc linprocfs rw 0 0</code><br>【安装好后在[工具/附加组件/插件]里可以看到Shockwave Flash插件】<br>3、推荐3个FireFox扩展插件【打开[工具/附加组件]搜索安装】<br>[1]adblock plus【广告屏蔽，FB的ports里也有收录】<br>[2]downthemall【该插件关了FireFox照样继续下，FB的ports里也有收录】<br>[3]维基词典+google翻译【翻译热键是Ctrl】<br>4、多媒体播放器【QT4的vlc也不错】<br><code>#pkg_add -r mplayer</code>【她有好多前端，感觉自带的前端用XFce4和OSX皮肤还是能用的】<br>5、音频播放器<br><code>#pkg_add -r deadbeef</code>【简约的音频播放器，如果出现播放偏快的问题试试配置[编辑/偏好设置/DSP]的Resampler为自动采样】<br>推荐2个电台【用deadbeef的“添加位置”功能打开】<br>【CRI怀旧频道网址：<code>mms://live.cri.cn/oldies</code>】<br>【BBC London 网址：<code>mmsh://wmlive.bbc.co.uk/wms/england/lrlondon?MSWMExt=.asf</code>】<br>6、压缩解压缩软件【Xfce自带的是squeeze(好像不支持.7z格式)，我喜欢file-roller】<br><code>#pkg_delete -f ‘*squeeze*’</code><br><code>#pkg_add -ri file-roller</code>【-i参数是不安装依赖的意思】<br><code>#pkg_add -r thunar-archive-plugin</code><br><code>#pkg_add -r gtar</code><br><code>#pkg_add -r unrar</code>【.rar是个跨平台格式，但是却是私有的，在WIN下除了购买WINRAR外似乎只有破解一条路；ports/rar需要编译】<br><code>#pkg_add -r p7zip</code>【必装！.7z格式是个跨平台、支持unicode、高压缩比的好格式；WIN下的haozip双向支持该格式】<br>7、办公软件libreoffice的安装和中文化【OpenOffice的衍生版(OpenOffice已经更名为Apache OpenOffice了)】<br>7.1、libreoffice的安装<br><code>#pkg_add -r libreoffice</code>【本文发布时，libreoffice的二进制包好像损坏了】<br>由于服务器上的libreoffice的二进制包损坏了，在老妖syh的提示下，查了论坛的文章，发现有2种方案：<br>[1]<code>#pkg_add -r libreoffice-legacy</code>【这是旧版的3.3.4】<br>[2]<code>#pkg_add -r pbi-manager</code>，下载<code>ftp://ftp.pcbsd.org/pub/mirror/PBI/editors/libreoffice/9/x32/libreoffice-3.5.2_2-i386.pbi</code>，<code>#rehash</code>，然后<code>#pbi_add –no-checksig libreoffice-3.5.2_2-i386.pbi</code>【这是PBI的新版，查看pbi软件用pbi_info，删除pbi软件用pbi_delete】<br>7.2、libreoffice的中文化<br>简单的说就是拷贝linux的中文语言包；<br>中文语言包的下载地址：<code>http://download.documentfoundation.org/</code>【找对应版本号的rpm包下载，一共2个文件，一个是helppack，一个是langpack】<br>解压合并后，拷贝至相应目录，具体命令为：<br><code>#cp -R libreoffice/* /usr/local/lib/libreoffice/</code>【libreoffice-legacy-3.3.4】<br><code>#cp -R libreoffice3.5/* /usr/pbi/libreoffice-i386/lib/libreoffice/</code>【libreoffice-3.5.2】<br>8、字体美化【打了补丁后Firefox的任务栏图标会失效，尚未找到解决办法】<br>下载cairo-cleartype的补丁保存在“保存目录”下：<code>http://pan.baidu.com/netdisk/singlepublic?fid=372061_2426972838</code><br><code>#cd /usr/ports/print/freetype2 &amp;&amp; make WITH_LCD_FILTERING=yes &amp;&amp; make deinstall reinstall clean</code><br><code>#cd /usr/ports/graphics/cairo &amp;&amp; make extract &amp;&amp; cd work/cairo* &amp;&amp; patch -Np1 &lt; /“保存目录”/cairo-1.10-cleartype.patch &amp;&amp; cd ../.. &amp;&amp; make deinstall reinstall clean</code><br>【以上出自”大神“sipingal的帖子：<code>https://www.freebsdchina.org/forum/viewtopic.php?p=266285#266285</code>】<br>[设置/设置管理器/外观/字体]配置成文泉驿微米黑10号，终端用文泉驿等宽正黑11号，gedit、mousepad用文泉驿等宽正黑12号，Firefox、LibreOffice用文泉驿正黑(最好关掉Firefox字体设置的高级里的允许页面自主选择的选项，并将衬线字体设为Luxi Serif、等宽字体设为文泉驿等宽正黑，否则字体风格会不统一而显得别扭)；字体渲染用字体光滑+略微微调+RGB次序；<br>[设置/设置管理器/窗口管理器/样式/标题字体]选文泉驿微米黑Bold10号。<br>以上操作对TTF字体有效，如果您喜欢点阵，您或许会喜欢下面这款英文字体：  </p>
+<p><code>http://wenq.org/forum/viewtopic.php?f=5&amp;t=1327&amp;p=6638#p6638</code>【FixedsysC字体】  </p>
+<p>9、Xfce外观美化【xfce-look.org上有些主题】<br>[设置/设置管理器/外观/风格]选xfce-winter比较耐看<br>鼠标主题在[设置/设置管理器/鼠标/主题]里调整，以下是两款鼠标主题包：<br><code>http://xfce-look.org/content/show.php/Aero+Mouse+Cursors+with+Drop+Shadow?content=67833</code><br><code>http://xfce-look.org/content/show.php/Silver+XCursors+3D?content=5533</code>  </p>
+<p>10、其他的软件<br><code>#pkg_add -r gedit ristretto gcalctool epdfview deluge xfce4-clipman-plugin xfce4-screenshooter-plugin easytag</code>  </p>
+<p>十、自定义内核——详见手册第九章，简要步骤如下：<br><code>#cd /usr/src/sys/i386/conf/</code><br><code>#cp GENERIC ~/X61KNL</code><br><code>#ln -s ~/X61KNL</code><br><code>#ee ~/X61KNL</code>【不需要的就用ctrl+k删除，或者用#号注释掉；关于各个选项的含义请查FB手册或到网上搜寻】<br><code>#cd /usr/src</code><br><code>#make buildkernel KERNCONF=X61KNL</code><br><code>#make installkernel KERNCONF=X61KNL</code>  </p>
+<p>十一、日常维护 主要有以下三方面：<br>1、安全更新【必须的】<br>2、ports更新【编译安装前必须做的】<br>3、软件更新【FB的软件本来就比linux的更新慢，个人用户好像没什么必要没事全更新吧】  </p>
+<p>十二、FreeBSD9.0 消除了关机时的硬盘响声，不用再打补丁了，关机直接按电源键就行  </p>
+<p>十三、THINKPAD Fn快捷键等的设置看下文：<br><code>http://www.inf.ethz.ch/personal/mharvan/x61.html</code><br>别忘了在<code>/etc/sysctl.conf</code>里加入<code>dev.acpi_ibm.0.events=1</code>并当前执行<code>sysctl dev.acpi_ibm.0.events=1</code>  </p>
+<p>十四、新手的观览<br>FreeBSD的ports里收录了哪些软件呢？有没有办法都安装上看看先？答案是有的。如果是想全部编译安装，那就<code>#cd /usr/ports &amp;&amp; make install clean</code>；如果要编译安装某一类，只需进入相应的目录make即可，比如要编译安装audio下的全部软件就用<code>#cd /usr/ports/audio &amp;&amp; make install clean</code>。<br>可是源码编译安装太费时间和空间了，有没有二进制包安装的方法呢？答案也是有的。这里要用到portupgrade软件。<br>以下是2个命令：【服务器上的Latest文件夹大约有35G，展开后更大，/usr分区可能要加大了】<br><code>#portupgrade -NPPay</code>【不推荐；此命令是安装/usr/ports/目录下所有软件的二进制包，需求大量时间和空间】<br><code>#portupgrade -NPPy ‘audio/*’</code>【推荐一类一类的找，也省得硬盘空间不够；此命令是安装/usr/ports/audio/目录下所有软件的二进制包】<br>但由于并非ports里的所有软件都会被打包至服务器，所以并不是每个软件都有现成的二进制包可用。<br>以下是反安装命令【假设安装了’audio/<em>’】：<br>1、<code>#cd /usr/ports/audio &amp;&amp; make deinstall clean</code>【此命令会一个一个port检查】<br>2、`#pkg_deinstall ‘audio/</em>’<code>【此命令会在已安装包里查询】  
+3、</code>#pkg_delete -af`【强制删除所有软件】  </p>
+<p>十五、常用工具软件不完全列表【大部分都可以用<code>#pkg_add -r</code>安装】：<br>FB的DOC和WIKI ：<code>www.freebsd.org/doc/zh_CN/</code>，<code>wiki.freebsdchina.org/</code><br>开源中国软件分类：<code>http://www.oschina.net/project/tags</code><br>网页浏览 ：firefox，chromium<br>flash插件 ：linux-f10-flashplugin11(需要编译)，gnash，swfdec-plugin<br>邮件客户端 ：claws-mail，sylpheed，thunderbird，balsa，evolution<br>邮件提醒 ：xfce4-mailwatch-plugin【未测试】，mail-notification，gnubiff<br>Office ：libreoffice，openoffice，abiword，gnumeric；dia【结构性图表绘制】<br>文本编辑器 ：gedit，leafpad，mousepad，madedit；vim，emacs；ghex，hexedit【终端用的】；geany【IDE】<br>音频相关 ：deadbeef，exaile，rhythmbox，audacious【有gtk界面可用】，amarok-kde4，beep-media-player；  easytag【改音乐标签和重命名音乐文件】；musicpd【linux下叫MPD】；asunder【抓轨】<br>多媒体工具 ：mplayer，vlc【QT4】，totem；avidemux2，pitivi【2个视频编辑器】；aegisub、subtitleeditor【2个字幕制作器】；mkvtoolnix【MKV封装器】<br>图片查看编辑 ：ristretto，gpicview，gthumb，shotwell，f-spot，eog；gimp，gpaint【画板，命令：gpaint-2】，inkscape【矢量绘图】，ImageMagick【命令：display】<br>pdf阅读 ：epdfview，evince<br>中文输入法 ：zh-ibus-pinyin，zh-scim-pinyin，fcitx<br>本地词典 ：stardict；goldendict【QT4】<br>普通下载 ：xpi-downthemall，gwget【可配合FF的xpi-flashgot使用】；<br>BT ：deluge，transmission-gtk2，qbittorrent【QT4】<br>电驴 ：amule<br>FTP ：filezilla<br>IRC ：xchat<br>即时通讯 ：web-qq【web.qq.com】，qq【linuxqq，命令qq】；pidgin，ekiga3，empathy，skype【是linux的】<br>压缩解压缩 ：file-roller + gtar + unrar + p7zip<br>光盘编辑刻录 ：xfburn，brasero，gnomebaker；isomaster<br>字体编辑器 ：fontforge【可惜了，至今我仍未找到菜单显示不全的原因】<br>桌面环境 ：xfce，gnome，kde，fvwm等<br>文件管理器 ：thunar，nautilus【鹦鹉螺】，pcmanfm等<br>文件查找 ：find 目录 -name 文件名【控制台命令】<br>天文软件 ：celestia，stellarium<br>虚拟仿真 ：virtualbox-ose【QT4】；vmware-tools6(需要编译)；wine<br>杂项 ：gcalctool【计算器】，xfce4-clipman-plugin【剪贴板】，xfce4-screenshooter-plugin【屏幕抓图】，xfce4-taskmanager【任务管理器，好像跟什么冲突】，gtk-recordmydesktop【屏幕录制】，gruler【屏幕标尺】等  </p>
+<p>十六、我选i386的原因<br>1、i386版本发热较低，当然也有人说amd64的更低，但在我的X61本本上是i386的低，性能的提升大概会导致能耗的增加吧；<br>2、FreeBSD小组对i386的支持貌似比amd64侧重一点；<br>3、INTEL芯跑64位的性能在某些方面好像比跑32位要弱。  </p>
+<p>十七、选Xfce的原因<br>kde配置项很多，感觉没头绪，并且kde的风格类似于windows，都是先选择后确认，不符合unix“选后立启”的风格;<br>gnome配置选项不够多，有点没法随意操控电脑的感觉;<br>xfce可配置度高，并且很有头绪，也符合unix“选后立启”的风格。<br>但是xfce并非完美，在我的电脑上，我感觉启动最快的好像是kde3.5；<br>还有gnome的文件管理器新建文件/文件夹后会自动选中，xfce和kde的会让人找不到；<br>幸好这些缺点都可以对付，并且xfce的开发貌似加快了，据说是因为kde4和gnome3改变太大导致的～～  </p>
+<p>十八、竣工感言<br>感觉FreeBSD的发热已经不是那么明显了，经常比XP还低，做桌面应用问题不大；<br>个人认为学习什么新鲜事物都要遵循两个原则：1、多看手册，2、多问多搜索；而学习FreeBSD很多时候1比2还好用。<br>FreeBSD本来就是给自学能力强的人用的，就比如买了一个新款手机，自学能力强的是看说明书第一，发问第二，自学能力差的则是发问第一。现今社会中能静下心来学习的又有几人呢？！<br>静心方与FreeBSD相通。  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-Linux/" rel="tag"># Unix_Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2011/10/09/【转帖】外刊：中国政治体制比美国的民主制更灵活/" rel="next" title="【转帖】外刊：中国政治体制比美国的民主制更灵活">
+                <i class="fa fa-chevron-left"></i> 【转帖】外刊：中国政治体制比美国的民主制更灵活
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/10/VPS＋LAMP＋WordPress-搭建個人博客步驟/" rel="prev" title="VPS＋LAMP＋WordPress 搭建個人博客步驟">
+                VPS＋LAMP＋WordPress 搭建個人博客步驟 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

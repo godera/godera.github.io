@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="默认标签," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="VPS＋LAMP＋WordPress 搭建個人博客步驟 　　首先，我是個小白。自己在建站的時候參考了好多文章，結果都在某一步卡住了。我在想，寫文章是不是要注意上下文，做到言必有指、字必有據，這樣才能讓閱者一目了然。 　　我一直認為，Coding 的首要目標不是實現功能，而是能讓後續者讀懂。因為少有不需要維護的程序。如果實現出來了，可是沒人去維護，那麼也就代表著這個程序的編碼工作已結束；如果能寫的讓">
+<meta name="keywords" content="默认标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPS＋LAMP＋WordPress 搭建個人博客步驟">
+<meta property="og:url" content="http://godera.org/2014/10/10/VPS＋LAMP＋WordPress-搭建個人博客步驟/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="VPS＋LAMP＋WordPress 搭建個人博客步驟 　　首先，我是個小白。自己在建站的時候參考了好多文章，結果都在某一步卡住了。我在想，寫文章是不是要注意上下文，做到言必有指、字必有據，這樣才能讓閱者一目了然。 　　我一直認為，Coding 的首要目標不是實現功能，而是能讓後續者讀懂。因為少有不需要維護的程序。如果實現出來了，可是沒人去維護，那麼也就代表著這個程序的編碼工作已結束；如果能寫的讓">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T10:48:42.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VPS＋LAMP＋WordPress 搭建個人博客步驟">
+<meta name="twitter:description" content="VPS＋LAMP＋WordPress 搭建個人博客步驟 　　首先，我是個小白。自己在建站的時候參考了好多文章，結果都在某一步卡住了。我在想，寫文章是不是要注意上下文，做到言必有指、字必有據，這樣才能讓閱者一目了然。 　　我一直認為，Coding 的首要目標不是實現功能，而是能讓後續者讀懂。因為少有不需要維護的程序。如果實現出來了，可是沒人去維護，那麼也就代表著這個程序的編碼工作已結束；如果能寫的讓">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2014/10/10/VPS＋LAMP＋WordPress-搭建個人博客步驟/"/>
+
+
+
+
+
+  <title>VPS＋LAMP＋WordPress 搭建個人博客步驟 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2014/10/10/VPS＋LAMP＋WordPress-搭建個人博客步驟/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VPS＋LAMP＋WordPress 搭建個人博客步驟</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-10T22:25:32+08:00">
+                2014-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>VPS＋LAMP＋WordPress 搭建個人博客步驟</p>
+<p>　　首先，我是個小白。自己在建站的時候參考了好多文章，結果都在某一步卡住了。我在想，寫文章是不是要注意上下文，做到言必有指、字必有據，這樣才能讓閱者一目了然。</p>
+<p>　　我一直認為，Coding 的首要目標不是實現功能，而是能讓後續者讀懂。因為少有不需要維護的程序。如果實現出來了，可是沒人去維護，那麼也就代表著這個程序的編碼工作已結束；如果能寫的讓別人看得懂，即便實現不了功能，那麼別人也可以去維護。</p>
+<p>　　不懂技術的老闆往往從功能實現去看一個程序員的能力，而懂技術的老闆往往從一個人的談吐和穿衣舉止去看。因為 碼如其人。穿著乾淨利落的人寫代碼也乾淨俐落，易於閱讀；談吐中邏輯嚴謹的人，代碼邏輯也一定嚴謹；舉止穩重者，代碼也穩重，不易出現尾大難掉的撓首之事。</p>
+<p>　　開篇之語、或有乖戾，三日建站、久長難耐，故作此文、或有同人。<br><a id="more"></a><br>一、VPS 的介紹與選擇</p>
+<p>　　VPS ，全稱 Virtual Private Server，即虚拟专用服务器。其不同於虛擬主機（Virtual Host），更類似於 VMWare 里的虛擬機概念，有著對系統的近乎絕對的操作權限。在沒有超賣的情況下，VPS 是不會出現別人擠佔你的資源的情況，但虛擬主機因為是共享資源，如果有一個用戶佔用資源多了，勢必影響其他用戶的資源。VPS 更獨立一些，VH 耦合度更高一些。</p>
+<p>　　VPS 的虛擬化技術一般有OpenVZ、Xen、KVM 三種技術。OpenVZ 最老舊，KVM 和新版本的 Xen 都應該是基於硬件支持的完全虛擬化。不同的虛擬化技術也對應著不同的服務價格，當然價格還有其他因素影響著，比如硬盤是否 SSD。</p>
+<p>　　國內VPS 和國外VPS 比較起來雖然 ping 值低，訪問速度快，但是價格貴，還要備案，如果僅僅是建個非名家個人博客，我想在訪問速度能接受的情況下，選國外 VPS 還是可以的。</p>
+<p>　　我目前使用的是青雲VPS <a href="https://www.qingcloud.com" target="_blank" rel="noopener">https://www.qingcloud.com</a></p>
+<p>　　（阿里云 青島、1核 、512M 內存、20G機械硬盤、1Mbps帶寬 月費要49.5，年費要495元，要備案）</p>
+<p>　　（digitalocean.com 新加坡、1核 、512M 內存、20G SSD硬盤、1T 流量 月費要31，年費要495元，不要備案）</p>
+<p>　　向大家介紹3個國外的 VPS。</p>
+<p>　　<a href="http://ramnode.com" target="_blank" rel="noopener">http://ramnode.com</a></p>
+<p>　　<a href="http://linode.com" target="_blank" rel="noopener">http://linode.com</a></p>
+<p>　　<a href="http://digitalocean.com" target="_blank" rel="noopener">http://digitalocean.com</a></p>
+<p>待續。。。  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/默认标签/" rel="tag"># 默认标签</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2012/06/23/U盘安装FreeBSD9-Xfce4桌面，boot0启动XP、FreeBSD、Ubuntu三系统/" rel="next" title="U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统">
+                <i class="fa fa-chevron-left"></i> U(优)盘安装FreeBSD-9.0+Xfce4桌面，boot0启动XP(Windows)、FreeBSD(Unix)、Ubuntu(Linux)三系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/11/我刪除了「手機多米」…/" rel="prev" title="我刪除了「手機多米」…">
+                我刪除了「手機多米」… <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

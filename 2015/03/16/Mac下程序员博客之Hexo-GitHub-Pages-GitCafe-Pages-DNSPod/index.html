@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Unix_Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="####引言：　　“不如”大师说：　　“一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭 WordPress，都不满意。再后来也弄过 Jekyll 和 Octopress，觉累不爱。　　直到多看了一眼 hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是黑客哦！如果你跟我一样纠结哪里写博，那就来到">
+<meta name="keywords" content="Unix_Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下程序员博客之 Hexo + GitHub Pages + Coding Pages + DNSPod">
+<meta property="og:url" content="http://godera.org/2015/03/16/Mac下程序员博客之Hexo-GitHub-Pages-GitCafe-Pages-DNSPod/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="####引言：　　“不如”大师说：　　“一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭 WordPress，都不满意。再后来也弄过 Jekyll 和 Octopress，觉累不爱。　　直到多看了一眼 hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是黑客哦！如果你跟我一样纠结哪里写博，那就来到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://godera.org/images/dnspodSetting.png">
+<meta property="og:updated_time" content="2018-01-23T10:48:34.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac下程序员博客之 Hexo + GitHub Pages + Coding Pages + DNSPod">
+<meta name="twitter:description" content="####引言：　　“不如”大师说：　　“一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭 WordPress，都不满意。再后来也弄过 Jekyll 和 Octopress，觉累不爱。　　直到多看了一眼 hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是黑客哦！如果你跟我一样纠结哪里写博，那就来到">
+<meta name="twitter:image" content="http://godera.org/images/dnspodSetting.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2015/03/16/Mac下程序员博客之Hexo-GitHub-Pages-GitCafe-Pages-DNSPod/"/>
+
+
+
+
+
+  <title>Mac下程序员博客之 Hexo + GitHub Pages + Coding Pages + DNSPod | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/03/16/Mac下程序员博客之Hexo-GitHub-Pages-GitCafe-Pages-DNSPod/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac下程序员博客之 Hexo + GitHub Pages + Coding Pages + DNSPod</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-16T22:26:28+08:00">
+                2015-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>####引言：<br>　　<strong><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="noopener">“不如”大师</a></strong>说：<br>　　“一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭 WordPress，都不满意。再后来也弄过 Jekyll 和 Octopress，觉累不爱。<br>　　<strong>直到多看了一眼 hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是黑客哦！</strong>如果你跟我一样纠结哪里写博，那就来到 GitHub 吧，让我们一起 hexo！H<strong>人希</strong>绝对不会让你失望，相信很快 hexo 就会流行起来。  </p>
+<p>　　<strong><a href="http://hexo.io" target="_blank" rel="noopener">Hexo作者</a></strong>说：<br>　　“我想每個 Octopress 的使用者一定都有這樣的煩惱──隨著文章數量愈來愈多，檔案建立的速度愈來愈慢。本站目前已累積至 54 篇文章，每次建立檔案時，至少都需要花費一分鐘以上的時間。”<br>　　“我想 Octopress 的名稱來源也許是 Octal（八進制） + Press，因此我便以十六進制（hexadecimal，縮寫為 hex）來取名。”<br><a id="more"></a></p>
+<p>#####一、安装 <a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">HomeBrew</a><br>　　HomeBrew 是 OS X 下的一个程式管理器，需要用他来安装其他程式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure></p>
+<p>#####二、安装 <a href="https://nodejs.org" target="_blank" rel="noopener">NodeJS</a><br><code>brew install node</code></p>
+<p>#####三、安装 <a href="http://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a><br>　　用 nodejs 自带 npm 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd hexo的安装文件夹</span><br><span class="line">npm install hexo -g</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p>#####四、安装 <a href="http://git-scm.com" target="_blank" rel="noopener">GIT</a><br><code>brew install git</code>  </p>
+<p>#####五、生成 SSH Key：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa -C &quot;姓名全拼@haodf.com&quot;  </span><br><span class="line">$git config --global user.name &quot;姓名全拼&quot;  </span><br><span class="line">$git config --global user.email &quot;姓名全拼@haodf.com&quot;  </span><br><span class="line"></span><br><span class="line">$cd ~/.ssh/  </span><br><span class="line">$cat id_rsa.pub 【注：ssh-keygen 命令默认生成 id_rsa.pub】</span><br></pre></td></tr></table></figure></p>
+<p>　　生成的 SSH Key 有很多地方需要使用。  </p>
+<p>#####六、生成 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a><br>　　GitHub Pages 绑定域名需要在 Hexo 目录下的 source 目录下建立一个名为 CNAME 的文件，里面写上自己的域名即可。<br>　　还需要给 GitHub 配置生成的 SSH Key，路径是GitHub右上角的小齿轮(设置入口) -&gt; SSH keys  </p>
+<p>#####七、生成 <a href="https://coding.net/help/doc/pages/index.html" target="_blank" rel="noopener">Coding Pages</a><br>　　Coding Pages 的设定跟 GitHub Pages 有点不一样，不过点击<a href="https://coding.net/help/doc/pages/index.html" target="_blank" rel="noopener">链接</a>看文档就够了。<br>　　也需要给 Coding.net 配置生成的 SSH Key，路径是右上角的我的账户 -&gt; SSH 公钥    </p>
+<p>#####八、Hexo 的设定、更新以及写作命令<br>　　1、修改 hexo 根目录下 _config.yml 文件(‘xxxx’为你的账户名称)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git</span><br><span class="line">  repo: git@github.com:xxxx/xxxx.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">- type: git</span><br><span class="line">  repo: git@git.coding.net:xxxx/xxxx.git</span><br><span class="line">  branch: coding-pages</span><br></pre></td></tr></table></figure></p>
+<p>　　2、安装 hexo-deployer-git<br>　　<code>npm install hexo-deployer-git --save</code><br>　　3、更新hexo到最新版<br>　　<code>npm update hexo -g</code><br>　　4、写作命令<br>　　　　3.1、建立新文章：<code>hexo n &quot;新文章名&quot;</code><br>　　　　3.2、预览文章：<code>hexo s</code><br>　　　　3.3、生成网页：<code>hexo g</code><br>　　　　3.4、发布文章：<code>hexo d</code><br>　　　　3.5、生成网页并发布文章：<code>hexo d -g</code>  </p>
+<p>#####九、安装主题<br>　　推荐 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT主题</a>，详情点进去 see see<br>　　主题文件里的 googleapi 需要处理一下才不会使得网页打开慢，具体看【十三.2】吧</p>
+<p>#####十、NameServer的设定 和 <a href="https://www.dnspod.cn" target="_blank" rel="noopener">DNSPod</a> 的设定<br>　　去域名服务商页面把 NameServer 设为 DNSPod 的 NS：f1g1ns1.dnspod.net 和 f1g1ns2.dnspod.net<br>　　DNSPod 的设定见图(红色的部分是 GitHub 的账户名称)：</p>
+<p><img src="/images/dnspodSetting.png" alt="DNSPod设置截图"><br>　　这样可以使得国外的用户访问 GitHub Pages，国内的访问 Coding Pages。<br>　　需要注意的是：Coding.net 需要在博客项目的 Pages 服务 标签里绑定一下域名。</p>
+<p>#####十一、MarkDown 相关<br>　　语法见<a href="http://code.wileam.com/markdown-syntax/" target="_blank" rel="noopener">介绍</a><br>　　markdown写作APP推荐用 <a href="http://www.sublimetext.com/3" target="_blank" rel="noopener">Sublime Text 3</a><br>　　Sublime Text 3 注册码见 <a href="http://hi.baidu.com/shaoduoli/item/897e27d11b955eed3cc2cb7b" target="_blank" rel="noopener">http://hi.baidu.com/shaoduoli/item/897e27d11b955eed3cc2cb7b</a><br>　　Sublime Text 的 Markdown 插件用 MarkdownEditing 的 Markdown GFW。</p>
+<p>#####十二、注意事项<br>　　1、_config.yml 文件的冒号后需要跟着一个空格，否则会报错；<br>　　2、如果命令的权限不够，请前加 sudo ；<br>　　3、发布的时候如果出现错误，一般删除 db.json 再重新发布就行了。</p>
+<p>#####十三、推荐文章和工具<br>　　1、<a href="http://code.wileam.com/build-a-hexo-blog-and-optimize/" target="_blank" rel="noopener">hexo搭建静态博客以及优化</a><br>　　2、<a href="http://zipperary.com/categories/hexo/" target="_blank" rel="noopener">Zippera’s blog 的 hexo 美文</a>  </p>
+<p>#####十四、各种优化  </p>
+<p>#####十五、祝你快乐  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-Linux/" rel="tag"># Unix_Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/16/博客大体转移完毕O-∩-∩-O/" rel="next" title="博客大体转移完毕O(∩">
+                <i class="fa fa-chevron-left"></i> 博客大体转移完毕O(∩
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/23/移动医疗竞争格局现状全览/" rel="prev" title="【转帖】移动医疗竞争格局现状全览">
+                【转帖】移动医疗竞争格局现状全览 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

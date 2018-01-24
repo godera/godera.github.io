@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。 当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CocoaPods git clone 巨慢的解决方案">
+<meta property="og:url" content="http://godera.org/2018/01/23/CocoaPods-git-clone-巨慢的解决方案/index.html">
+<meta property="og:site_name" content="素墨文胤">
+<meta property="og:description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。 当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png">
+<meta property="og:image" content="http://www.aneasystone.com/usr/uploads/2015/08/3353057308.png">
+<meta property="og:updated_time" content="2018-01-23T11:08:02.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CocoaPods git clone 巨慢的解决方案">
+<meta name="twitter:description" content="转自： http://www.aneasystone.com/archives/2015/08/git-clone-faster.html本来想自己写来，突然发现这篇文章已经很全面了。我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。 当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。 12git config">
+<meta name="twitter:image" content="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://godera.org/2018/01/23/CocoaPods-git-clone-巨慢的解决方案/"/>
+
+
+
+
+
+  <title>CocoaPods git clone 巨慢的解决方案 | 素墨文胤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">素墨文胤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一日心静一日仙，不以神力乱人间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2018/01/23/CocoaPods-git-clone-巨慢的解决方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CocoaPods git clone 巨慢的解决方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T18:22:38+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转自： <a href="http://www.aneasystone.com/archives/2015/08/git-clone-faster.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2015/08/git-clone-faster.html</a><br>本来想自己写来，突然发现这篇文章已经很全面了。<br>我用的是 蓝灯，执行下面两行后，git 就可以通过代理上网了。速度杠杠的。</p>
+<p>当然还可以直接将同事的 ~/.cocoapods/repos 目录，挪到自己的电脑上，这样就只需要更新一下即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:50775</span><br><span class="line">git config --global https.proxy https://127.0.0.1:50775</span><br></pre></td></tr></table></figure>
+<h1 id="git-clone-太慢怎么办？"><a href="#git-clone-太慢怎么办？" class="headerlink" title="git clone 太慢怎么办？"></a>git clone 太慢怎么办？</h1><p>Git 和 GitHub 的出现打开了开源世界的另一扇大门，版本控制变得更强大（也更复杂），项目的管理变得更加容易，项目的开发也变得更容易进行多人协作。GitHub 无疑是程序员的 Facebook ，在这里汇聚了无数世界顶级的项目以及顶级的程序员，你可以为你感兴趣的项目加星（Star），可以关注任何人（Follow）以及他们的项目（Watch），而且更赞的是，你可以复制一份别人项目的副本（Fork），来进行自己的修改，如果你愿意的话，你还可以向项目的原作者发起请求（Pull Request），将你做的修改合并到原项目中。这样无论你是什么人，来自不同的国家，拥有不同的技能，都可以对所有开源的项目作出贡献。</p>
+<p>尽管上面描述的开源世界如此美好，但是在大天朝，在墙内，你却完全无法领略。因为当你访问 GitHub 时，或者使用 <code>git clone</code> 兴致勃勃的下载你感兴趣的项目时，巨慢的速度将彻底击毁你的信心，最终只好放弃表示玩不起。</p>
+<p><img src="http://www.aneasystone.com/usr/uploads/2015/08/2400153373.png" alt="git-slower.png"></p>
+<p>强大的长城技术对 GitHub 网开一面，没有像 Google 或 Facebook 这样直接斩尽杀绝，但是对它做了严格的限速，这种折磨比直接毙了更痛苦（<em>有网友表示，有些地区速度很快，有些地区速度很慢，也有可能是和网络运营商有关</em>）。如上图所示，<code>git clone</code> 的下载速度从来没有超过 10KiB/s ，这也就意味着一个 100MiB 的项目，需要近三个小时才能下完，而且由于网络的不稳定性，下载过程中偶尔会出现断开连接的情况，由于 <code>git clone</code> 不支持断点续传，这让几个小时的下载时间白白浪费掉，只能重新开始。</p>
+<p>这篇文章将介绍几种方法来快速从 GitHub 上下载代码。</p>
+<h2 id="一、git-shallow-clone"><a href="#一、git-shallow-clone" class="headerlink" title="一、git shallow clone"></a>一、git shallow clone</h2><p><code>git clone</code> 默认会下载项目的完整历史版本，如果你只关心最新版的代码，而不关心之前的历史信息，可以使用 git 的浅复制功能：</p>
+<p><code>--depth=1</code> 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，例如，<a href="https://github.com/bcit-ci/CodeIgniter" target="_blank" rel="noopener">CodeIgniter</a> 项目完整下载有近 100MiB ，而使用浅复制只有 5MiB 多，这样即使在恶劣的网络环境下，也可以快速的获得代码。如果之后又想获取完整历史信息，可以使用下面的命令：</p>
+<p>或者，如果你只是想下载最新的代码看看，你也可以直接从 GitHub 上下载打包好的 ZIP 文件，这比浅复制更快，因为它只包含了最新的代码文件，而且是经过 ZIP 压缩的。但是很显然，浅复制要更灵活一点。</p>
+<h2 id="二、GUI-工具-代理"><a href="#二、GUI-工具-代理" class="headerlink" title="二、GUI 工具 + 代理"></a>二、GUI 工具 + 代理</h2><p>如果很有幸你正在使用代理，懂得如何翻墙的话，那么访问 GitHub 对你来说应该不在话下。下载 GitHub 上项目的最简单的方法就是使用一款图形化界面（GUI）的 Git 工具，这样的工具现在比比皆是。使用 GUI 工具方便的地方在于，可以在设置中配置是否要使用代理，将你翻墙所使用的代理 IP 拿过来配置上就 OK 了，或者更直接的，将代理配置为系统代理。</p>
+<h2 id="三、git-http-proxy"><a href="#三、git-http-proxy" class="headerlink" title="三、git + http.proxy"></a>三、git + http.proxy</h2><p>如果你跟我一样，喜欢使用原生的 git 命令，喜欢在命令行下操作的那种感觉，那么也可以在命令行下直接配置 git 使用代理，当然前提一样是，你懂得如何翻墙。</p>
+<p>使用上面的命令配置完之后，会在 ~/.gitconfig 文件中多出几行：</p>
+<p>你也可以使用下面的命令检查配置是否生效：</p>
+<p>另外，如果你想取消该设置，可以：</p>
+<p>配置完成后，重新 clone 一遍，可以看到速度得到了极大的提升！</p>
+<p><img src="http://www.aneasystone.com/usr/uploads/2015/08/3353057308.png" alt="git-faster.png"></p>
+<h3 id="题外话：在命令行中如何使用代理？"><a href="#题外话：在命令行中如何使用代理？" class="headerlink" title="题外话：在命令行中如何使用代理？"></a>题外话：在命令行中如何使用代理？</h3><p>要注意的是使用 <code>git config --global</code> 配置的代理只能供 git 程序使用，如果你希望让命令行中的其他命令也能自动使用代理，譬如 curl 和 wget 等，可以使用下面的方法：</p>
+<p>这样配置完成后，所有命令行中的 HTTP 和 HTTPS 请求都会自动通过代理来访问了。如果要取消代理设置，可以：</p>
+<p>还有一点要注意的是，使用 http_proxy 和 https_proxy 只对 HTTP 和 HTTPS 请求有效，所以当你 ping www.google.com 的时候如果 ping 不通的话，也就没什么大惊小怪的了。</p>
+<h3 id="题外话：如何使用-PAC-文件？"><a href="#题外话：如何使用-PAC-文件？" class="headerlink" title="题外话：如何使用 PAC 文件？"></a>题外话：如何使用 PAC 文件？</h3><p>有时候我们会使用 git 访问不同的 git 仓库，譬如 GitHub，或者 Git@OSC， 或者你自建的 Git 服务器，但是只想访问 GitHub 的时候使用代理，访问其他的仓库不要使用代理。这时候我们似乎可以使用 PAC 来解决这个问题。<a href="https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%90%86%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">PAC</a> （代理自动配置）正是用于浏览器来根据不同的 URL 自动采用不同的代理的一项技术，该文件包含一个 <code>FindProxyForURL</code> Javascript 函数，用于根据 URL 来返回不同的代理。</p>
+<p>但是遗憾的是，目前 git 似乎还不支持 PAC 文件，但我们可以打开 PAC 文件找到代理的地址，然后通过上面的方法来配置或取消配置，只是有些繁琐。<strong>也许可以写个脚本来解析 PAC 文件，并将 git 包装下，来实现自动切换代理，有机会尝试下。</strong></p>
+<h2 id="四、其他方法"><a href="#四、其他方法" class="headerlink" title="四、其他方法"></a>四、其他方法</h2><p>网上还提供了很多其他的方法，但是我暂未尝试过，且记录一下：</p>
+<ul>
+<li>ssh tunnel 或者 shadowsocks</li>
+<li>ss + proxychains</li>
+<li>使用境外的 VPS</li>
+<li>powerpac</li>
+<li>VPN</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/10/Cocoa-依赖管理/" rel="next" title="Cocoa 依赖管理">
+                <i class="fa fa-chevron-left"></i> Cocoa 依赖管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">梁逊</p>
+              <p class="site-description motion-element" itemprop="description">一日心静一日仙、不以神力乱人间</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git-clone-太慢怎么办？"><span class="nav-number">1.</span> <span class="nav-text">git clone 太慢怎么办？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、git-shallow-clone"><span class="nav-number">1.1.</span> <span class="nav-text">一、git shallow clone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、GUI-工具-代理"><span class="nav-number">1.2.</span> <span class="nav-text">二、GUI 工具 + 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、git-http-proxy"><span class="nav-number">1.3.</span> <span class="nav-text">三、git + http.proxy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题外话：在命令行中如何使用代理？"><span class="nav-number">1.3.1.</span> <span class="nav-text">题外话：在命令行中如何使用代理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题外话：如何使用-PAC-文件？"><span class="nav-number">1.3.2.</span> <span class="nav-text">题外话：如何使用 PAC 文件？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、其他方法"><span class="nav-number">1.4.</span> <span class="nav-text">四、其他方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梁逊</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
