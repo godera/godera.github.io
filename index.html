@@ -346,6 +346,7 @@
 <p>5、建立 match 用的证书和签名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fastlane match development</span><br><span class="line">fastlane match adhoc</span><br><span class="line">fastlane match appstore</span><br></pre></td></tr></table></figure>
 <p>该命令是证书安装命令，如果没有则会去创建。</p>
+<p>这里会出现一个证书的密码，需要同时告诉其他队员。</p>
 <p>6、设置 XCode</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a)删除 XCode Account 里的苹果开发者账号</span><br><span class="line">b)将工程签名设置成 match 相关的</span><br></pre></td></tr></table></figure>
 <p>7、其他人安装好 fastlane 后，用 步骤5 的命令去安装证书，同时用 步骤6 移除旧管理方式</p>
