@@ -258,6 +258,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/10/10/从工程中删除CocoaPods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/10/从工程中删除CocoaPods/" itemprop="url">从工程中删除CocoaPods</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T18:31:51+08:00">2015-10-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>删除工程文件夹下的Podfile、Podfile.lock及Pods文件夹</li>
+<li>删除xcworkspace文件</li>
+<li>使用xcodeproj文件打开工程，删除Frameworks组下的Pods.xcconfig及libPods.a引用</li>
+<li>在工程设置中的Build Phases下删除Check Pods Manifest.lock及Copy Pods Resources</li>
+</ol>
+<p>ps:如果将cocoapods集成到工程中后不小心修改或删除了其相关文件导致无法便以通过例如：不小心把<br>Pods.xcconfig给删除了然后出现diff: /../Podfile.lock: No such file or directory，用上面的方法删除cocoapods后，<br>再重新 sudo pod install 一下就好了。<br>如果编译的时候出现权限问题，对工程文件夹$sudo chmod 777 path-to-project-folder/<em><br>$sudo chown 777 path-to-project-folder/</em><br>即可。</p>
+<p>From:<a href="http://stackoverflow.com/questions/16427421/how-to-remove-cocoapods-from-a-project" target="_blank" rel="noopener">http://stackoverflow.com/questions/16427421/how-to-remove-cocoapods-from-a-project</a></p>
+<p>【评】Cocoapods究竟有什么好？一款商用的软件必然追求代码稳定的，所以当有新代码进入的时候都应该做审查，用Cocoapods怎么做呢？更新安装的速度还那么慢！想来我们需要的是不时上github看我们关注的类库的更新，而不是Cocoapods。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godera.org/2015/09/09/听《水上致歌》-Auf-dem-Wasser-zu-singen-有感/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1113,127 +1242,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/04/27/走到哪里、哪里就是我的家/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/04/27/走到哪里、哪里就是我的家/" itemprop="url">走到哪里、哪里就是我的家</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-04-27T09:39:35+08:00">2015-04-27</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　干一行、爱一行，走到哪里、哪里就是我的家。<br>　　只要心里不曾执着，世界皆是我的家。<br>　　若心有执念，总是小道。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1281,7 +1289,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

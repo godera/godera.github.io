@@ -258,6 +258,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/12/23/iOS-Array-去重方法效率比较/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/23/iOS-Array-去重方法效率比较/" itemprop="url">iOS Array 去重方法效率比较</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-23T11:10:44+08:00">2016-12-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>引用：<a href="http://www.cnblogs.com/someonelikeyou/p/5795090.html" target="_blank" rel="noopener">http://www.cnblogs.com/someonelikeyou/p/5795090.html</a></p>
+<p>#####结论：原序去重用 NSOrderedSet 或 NSMutableArray<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)testDistinctEfficiencyForArray &#123;</span><br><span class="line">    NSArray *pointArray = @[[NSValue valueWithCGPoint:CGPointMake(<span class="number">1</span>, <span class="number">1</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">1</span>, <span class="number">1</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">2</span>, <span class="number">2</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">3</span>, <span class="number">3</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">3</span>, <span class="number">3</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">2</span>, <span class="number">2</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">4</span>, <span class="number">4</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">3</span>, <span class="number">3</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">5</span>, <span class="number">5</span>)],</span><br><span class="line">                            [NSValue valueWithCGPoint:CGPointMake(<span class="number">4</span>, <span class="number">4</span>)]];</span><br><span class="line">    NSArray *numberArray = @[@<span class="number">1</span>,@<span class="number">1</span>,@<span class="number">2</span>,@<span class="number">1</span>,@<span class="number">3</span>,@<span class="number">4</span>,@<span class="number">3</span>,@<span class="number">5</span>,@<span class="number">1</span>,@<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">for</span> (NSInteger i = <span class="number">0</span>; i &lt; <span class="number">18</span>; i ++) &#123;</span><br><span class="line">        numberArray = [numberArray arrayByAddingObjectsFromArray:numberArray];</span><br><span class="line">        pointArray = [pointArray arrayByAddingObjectsFromArray:pointArray];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//numberArray.count = 2621440</span></span><br><span class="line">    NSLog(@<span class="string">"numberArray.count = %ld"</span>, numberArray.count);</span><br><span class="line">    <span class="comment">//pointArray.count = 2621440</span></span><br><span class="line">    NSLog(@<span class="string">"pointArray.count = %ld"</span>, pointArray.count);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/////////////////////- 以下是 numbers 去重 -/////////////////////////</span></span><br><span class="line">    <span class="comment">//原序,   time = 0.492623，    NSMutableArray 去重结果: 12345,</span></span><br><span class="line">    [self distinctItemsUsingMutableArrayForArray:numberArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//乱序,   time = 0.803937，    NSArray distinctUnionOfObjects.self 去重结果: 32514 ,</span></span><br><span class="line">    [self distinctItemsUsingArrayKVCForArray:numberArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//乱序,   time = 0.121862，    NSMutableDictionary 去重结果: 32514 ,</span></span><br><span class="line">    [self distinctItemsUsingMutableDictionaryForArray:numberArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//乱序,   time = 0.108073，    NSSet 去重结果: 32514 ,</span></span><br><span class="line">    [self distinctItemsUsingSetForArray:numberArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//原序,   time = 0.132699，    NSOrderedSet 去重结果:12345,</span></span><br><span class="line">    [self distinctItemsUsingOrderedSetForArray:numberArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//乱序,   time = 0.110322，    NSSet+distinctUnionOfObjects.self 去重结果:32514,</span></span><br><span class="line">    [self distinctItemsUsingSetKVCForArray:numberArray];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/////////////////////- 以下是 Points 去重 -/////////////////////////</span></span><br><span class="line">    <span class="comment">//原序,   time = 0.385306，    NSMutableArray 去重结果: &#123;1,1&#125; &#123;2,2&#125; &#123;3,3&#125; &#123;4,4&#125; &#123;5,5&#125; ,</span></span><br><span class="line">    [self distinctItemsUsingMutableArrayForArray:pointArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//原序,   time = 1.211656，    NSArray distinctUnionOfObjects.self 去重结果: &#123;1,1&#125; &#123;2,2&#125; &#123;3,3&#125; &#123;4,4&#125; &#123;5,5&#125; ,</span></span><br><span class="line">    [self distinctItemsUsingArrayKVCForArray:pointArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//原序,   time = 0.565697，    NSMutableDictionary 去重结果: &#123;1,1&#125; &#123;2,2&#125; &#123;3,3&#125; &#123;4,4&#125; &#123;5,5&#125; ,</span></span><br><span class="line">    [self distinctItemsUsingMutableDictionaryForArray:pointArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//原序,   time = 0.393808，    NSSet 去重结果: &#123;1,1&#125; &#123;2,2&#125; &#123;3,3&#125; &#123;4,4&#125; &#123;5,5&#125; ,</span></span><br><span class="line">    [self distinctItemsUsingSetForArray:pointArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//原序,   time = 0.492740，    NSOrderedSet 去重结果: &#123;1,1&#125; &#123;2,2&#125; &#123;3,3&#125; &#123;4,4&#125; &#123;5,5&#125; ,</span></span><br><span class="line">    [self distinctItemsUsingOrderedSetForArray:pointArray];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//原序,   time = 0.419985，    NSSet+distinctUnionOfObjects.self 去重结果: &#123;1,1&#125; &#123;2,2&#125; &#123;3,3&#125; &#123;4,4&#125; &#123;5,5&#125; ,</span></span><br><span class="line">    [self distinctItemsUsingSetKVCForArray:pointArray];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)distinctItemsUsingMutableArrayForArray:(NSArray *)array &#123;</span><br><span class="line">    NSDate *dateOrigin = [NSDate date];</span><br><span class="line">    </span><br><span class="line">    NSMutableArray *resultArray = [NSMutableArray array];</span><br><span class="line">    <span class="keyword">for</span> (NSNumber *num  <span class="keyword">in</span> array) &#123;</span><br><span class="line">        <span class="keyword">if</span> ([resultArray containsObject:num] == NO) &#123;</span><br><span class="line">            [resultArray addObject:num];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@<span class="string">"NSMutableArray: %lf"</span>, [[NSDate date] timeIntervalSinceDate:dateOrigin]);</span><br><span class="line">    NSLog(@<span class="string">"result NSArray = %@"</span>, resultArray);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)distinctItemsUsingArrayKVCForArray:(NSArray *)array &#123;</span><br><span class="line">    <span class="comment">//KVC容器操作</span></span><br><span class="line">    <span class="comment">//容器不仅仅能使用KVC方法实现对容器成员传递普通的操作消息，KVC还定义了特殊的一些常用操作，使用valueForKeyPath:结合操作符来使用</span></span><br><span class="line">    <span class="comment">//这里使用对象操作符：</span></span><br><span class="line">    <span class="comment">//@distinctUnionOfObjects、@unionOfObjects</span></span><br><span class="line">    <span class="comment">//@distinctUnionOfObjects操作符返回被操作对象指定属性的集合并做去重操作，而@unionOfObjects则允许重复。如果其中任何涉及的对象为nil，则抛出异常。</span></span><br><span class="line">    NSDate *dateOrigin = [NSDate date];</span><br><span class="line">    </span><br><span class="line">    NSArray *resultArray = [array valueForKeyPath:@<span class="string">"@distinctUnionOfObjects.self"</span>];</span><br><span class="line">    </span><br><span class="line">    NSLog(@<span class="string">"NSArray distinctUnionOfObjects.self: %lf"</span>, [[NSDate date] timeIntervalSinceDate:dateOrigin]);</span><br><span class="line">    NSLog(@<span class="string">"values NSArray = %@"</span>, resultArray);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)distinctItemsUsingMutableDictionaryForArray:(NSArray *)array &#123;</span><br><span class="line">    NSDate *dateOrigin = [NSDate date];</span><br><span class="line">    </span><br><span class="line">    NSMutableDictionary *numDictionary = [NSMutableDictionary dictionary];</span><br><span class="line">    <span class="keyword">for</span> (NSNumber *num  <span class="keyword">in</span> array) &#123;</span><br><span class="line">        [numDictionary setObject:num forKey:num];</span><br><span class="line">    &#125;</span><br><span class="line">    NSArray *resultArray = numDictionary.allKeys;</span><br><span class="line"></span><br><span class="line">    NSLog(@<span class="string">"NSMutableDictionary: %lf"</span>, [[NSDate date] timeIntervalSinceDate:dateOrigin]);</span><br><span class="line">    NSLog(@<span class="string">"numDictionary.allKeys NSArray: %@"</span>, resultArray);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)distinctItemsUsingSetForArray:(NSArray *)array &#123;</span><br><span class="line">    NSDate *dateOrigin = [NSDate date];</span><br><span class="line">    </span><br><span class="line">    NSSet *numSet = [NSSet setWithArray:array];</span><br><span class="line">    NSArray *resultArray = numSet.allObjects;</span><br><span class="line"></span><br><span class="line">    NSLog(@<span class="string">"NSSet: %lf"</span>, [[NSDate date] timeIntervalSinceDate:dateOrigin]);</span><br><span class="line">    NSLog(@<span class="string">"numSet.allObjects NSArray : %@"</span>, resultArray);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)distinctItemsUsingOrderedSetForArray:(NSArray *)array &#123;</span><br><span class="line">    NSDate *dateOrigin = [NSDate date];</span><br><span class="line">    </span><br><span class="line">    NSOrderedSet *orderNumSet = [NSOrderedSet orderedSetWithArray:array];</span><br><span class="line">    NSArray *resultArray = orderNumSet.array;</span><br><span class="line">    </span><br><span class="line">    NSLog(@<span class="string">"NSOrderedSet: %lf"</span>, [[NSDate date] timeIntervalSinceDate:dateOrigin]);</span><br><span class="line">    NSLog(@<span class="string">"orderNumSet.array NSArray : %@"</span>, resultArray);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)distinctItemsUsingSetKVCForArray:(NSArray *)array &#123;</span><br><span class="line">    <span class="comment">//KVC 容器对象操作符 distinctUnionOfObjects</span></span><br><span class="line">    NSDate *dateOrigin = [NSDate date];</span><br><span class="line">    </span><br><span class="line">    NSSet *aSet = [[NSSet alloc] initWithArray:array];</span><br><span class="line">    NSSet *setValues = [aSet valueForKeyPath:@<span class="string">"@distinctUnionOfObjects.self"</span>];</span><br><span class="line">    </span><br><span class="line">    NSLog(@<span class="string">"NSSet+distinctUnionOfObjects.self: %lf"</span>, [[NSDate date] timeIntervalSinceDate:dateOrigin]);</span><br><span class="line">    NSLog(@<span class="string">"setValues  NSSet: %@"</span>, setValues);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godera.org/2016/12/16/什么是-MVVM-模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1123,128 +1245,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/03/29/iOS-热修复-HotFix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/29/iOS-热修复-HotFix/" itemprop="url">iOS 热修复(HotFix)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-29T19:06:45+08:00">2016-03-29</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　iOS 在发现线上 Bug 后，如果通过发紧急版修复，即便审核加速了一般也要1-2天。这简直太痛苦了。<br>　　有没有“热修复”的方法呢？如果有，我们就可以在发现的第一时间修复bug了。<br>　　可喜的是 bang590 的 JSPatch 已经诞生了，它“使用 JavaScript 调用任何 Objective-C 的原生接口，替换任意 Objective-C 原生方法”。竟然还有人用来进行 “热开发”，不过一般是用来实时修复线上 Bug，并在下一个版本发布的时候将修正代码用原生代码替换。<br>　　使用 JSPatch 需要熟悉 JSPatch Script 语法，当然还有 OC 到 JSPatch 的转换器可用。难点在于JSPatch Script 的语法。<br>　　小团队不建议自己搭建 JSPatch 的服务器，可以使用 JSPatch Platform。</p>
-<p>相关资料：<br>1、JSPatch Platform: <a href="http://jspatch.com" target="_blank" rel="noopener">http://jspatch.com</a><br>2、JSPatch 工程: <a href="https://github.com/bang590/JSPatch" target="_blank" rel="noopener">https://github.com/bang590/JSPatch</a><br>3、JSPatch 转换器: <a href="https://github.com/bang590/JSPatchConvertor" target="_blank" rel="noopener">https://github.com/bang590/JSPatchConvertor</a><br>4、JSPatch 语法及其他资料: <a href="https://github.com/bang590/JSPatch/wiki/" target="_blank" rel="noopener">https://github.com/bang590/JSPatch/wiki/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1292,7 +1292,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
