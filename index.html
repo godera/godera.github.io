@@ -327,32 +327,16 @@
 
       
         
-          
-            <p>match 现在是自动工具 fastlane 的一个组件，用于管理代码签名。</p>
+          <p>match 现在是自动工具 fastlane 的一个组件，用于管理代码签名。</p>
 <p>用 match 管理 iOS 的签名无痛感。</p>
 <p>下面列举安装和使用步骤：<strong>（一般使用者直接跳步骤7）</strong></p>
-<p>1、安装 fastlane [注1]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br><span class="line">sudo gem install fastlane -NV</span><br></pre></td></tr></table></figure>
-<p>2、建立存储 iOS 签名的 git 仓库，并做适当授权</p>
-<p>在 gitlab 上创建如 <a href="https://gitlab.*.com/ios/certificates" target="_blank" rel="noopener">https://gitlab.*.com/ios/certificates</a> 的 git 仓库</p>
-<p>3、进入项目工程目录，执行 match init</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane match init</span><br></pre></td></tr></table></figure>
-<p>填入 签名仓库 的 URL 后 会在项目工程目录下生成一个 Matchfile，</p>
-<p>打开 Matchfile 填写好前 4 行</p>
-<p>4、revoke 老旧无用的证书和签名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastlane match nuke development</span><br><span class="line">fastlane match nuke distribution</span><br></pre></td></tr></table></figure>
-<p>关于 nuke distribution， 官方指导说：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Don&apos;t worry, apps that are already available in the App Store / TestFlight will still work.</span><br></pre></td></tr></table></figure>
-<p>5、建立 match 用的证书和签名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fastlane match development</span><br><span class="line">fastlane match adhoc</span><br><span class="line">fastlane match appstore</span><br></pre></td></tr></table></figure>
-<p>该命令是证书安装命令，如果没有则会去创建。</p>
-<p>这里会出现一个证书的密码，需要同时告诉其他队员。</p>
-<p>6、设置 XCode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a)如无需要，可以删除 XCode Account 里的苹果开发者账号</span><br><span class="line">b)去掉 Automatically manage signing 前面的对勾</span><br><span class="line">c)将工程签名设置成 match 相关的</span><br></pre></td></tr></table></figure>
-<p><strong>7、其他人用 步骤1 安装好 fastlane 后，用 步骤5 的命令去安装证书，同时用 步骤6 移除旧管理方式</strong></p>
-<p>[注1] fastlane 安装指导：<a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/30/iOS-签名的-match-管理步骤/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
