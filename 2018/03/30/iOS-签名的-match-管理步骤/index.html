@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="素墨文胤">
 <meta property="og:description" content="match 现在是自动工具 fastlane 的一个组件，用于管理代码签名。 用 match 管理 iOS 的签名无痛感。 下面列举使用步骤：（其他使用者直接跳步骤7） 1、安装 fastlane [注1] 12xcode-select --installsudo gem install fastlane -NV 2、建立存储 iOS 签名的 git 仓库，并做适当授权 在 gitlab 上创建如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-13T03:16:51.581Z">
+<meta property="og:updated_time" content="2018-04-13T07:56:29.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 签名的 match 管理步骤">
 <meta name="twitter:description" content="match 现在是自动工具 fastlane 的一个组件，用于管理代码签名。 用 match 管理 iOS 的签名无痛感。 下面列举使用步骤：（其他使用者直接跳步骤7） 1、安装 fastlane [注1] 12xcode-select --installsudo gem install fastlane -NV 2、建立存储 iOS 签名的 git 仓库，并做适当授权 在 gitlab 上创建如">
@@ -345,7 +345,7 @@
 <p>该命令是证书安装命令，如果没有则会去创建。</p>
 <p>这里会出现一个证书的密码，需要同时告诉其他队员。</p>
 <p>6、设置 XCode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a)删除 XCode Account 里的苹果开发者账号</span><br><span class="line">b)去掉 Automatically manage signing 前面的对勾</span><br><span class="line">c)将工程签名设置成 match 相关的</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a)如无需要，可以删除 XCode Account 里的苹果开发者账号</span><br><span class="line">b)去掉 Automatically manage signing 前面的对勾</span><br><span class="line">c)将工程签名设置成 match 相关的</span><br></pre></td></tr></table></figure>
 <p><strong>7、其他人用 步骤1 安装好 fastlane 后，用 步骤5 的命令去安装证书，同时用 步骤6 移除旧管理方式</strong></p>
 <p>[注1] fastlane 安装指导：<a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p>
 
