@@ -208,13 +208,13 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
         </li>
       
 
@@ -242,6 +242,128 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/03/30/让-Sublime-Text-支持-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/03/30/让-Sublime-Text-支持-JavaScript/" itemprop="url">让 Sublime Text 支持 JavaScript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-30T14:53:23+08:00">2016-03-30</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　Sublime Text 默认不支持 JavaScript 的运行，可以通过 Mac 内置的 JavaScript 控制台程序进行 Build System 的自定义：<br>　　菜单路径：[Tools]-&gt;[Build System]-&gt;[New Build System…]<br>　　粘贴以下内容并保存为 JavaScriptCore.sublime-build：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;cmd&quot;: [&quot;/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc&quot;, &quot;$file&quot;],</span><br><span class="line">    &quot;selector&quot;: &quot;source.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　选择 [Tools]-&gt;[Build System] 里的 JavaScriptCore，就可以 Build 了。<br>　　<strong>记得 Build 前先将源码文件保存。</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -287,7 +409,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-29T19:06:45+08:00">2016-03-29</time>
             
@@ -409,7 +531,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-28T18:30:11+08:00">2016-03-28</time>
             
@@ -531,7 +653,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-25T15:46:08+08:00">2016-03-25</time>
             
@@ -673,7 +795,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-17T15:51:25+08:00">2016-02-17</time>
             
@@ -794,7 +916,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-11T18:18:15+08:00">2016-01-11</time>
             
@@ -918,7 +1040,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-11T16:38:26+08:00">2016-01-11</time>
             
@@ -1056,7 +1178,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-28T12:13:12+08:00">2015-12-28</time>
             
@@ -1098,128 +1220,6 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
         
           
             <p>今天不小心删掉了苹果开发者后台的(Managed by Xcode) 签名，然后我在 Xcode 的 Preferences 里的 Accounts 里把 Apple ID 删除再添加一次，不久就发现 (Managed by Xcode) 签名自动生成了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/12/04/扩展Mac自带词典词库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/12/04/扩展Mac自带词典词库/" itemprop="url">扩展Mac自带词典词库</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-04T17:49:07+08:00">2015-12-04</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>虽然苹果自带了“牛津英汉汉英词典（简体中文 - 英文）”，但是我觉得仍然不够好用；<br>该词典的解释不如“柯林斯”词典来得有感觉，也不如“懒虫”词典来得精炼，所以有了下文：<br>1、打开 Launchpad 中的“词典”；<br>2、打开“词典”菜单：“文件”-“打开词典文件夹”；<br>3、把要安装的词典软件拖到 词典文件夹 中；<br>4、打开“词典”菜单：“词典”-“偏好设置”，勾选刚安装的词典。</p>
-<p>链接: <a href="http://pan.baidu.com/s/1qXc5HIO" target="_blank" rel="noopener">http://pan.baidu.com/s/1qXc5HIO</a> 密码: cn5y</p>
 
           
         
@@ -1302,8 +1302,8 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">86</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -1316,7 +1316,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -1367,7 +1367,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
