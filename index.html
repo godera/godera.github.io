@@ -330,7 +330,7 @@
           
             <p>span 是内联的，用在一小块的内联 HTML 中，前后不断行。</p>
 <p>div (division)元素是块级的（简单地说，它等同于其前后有断行），用于组合一大块的代码。</p>
-<p>p (paragraph)元素是块级的，前后断行，而且还要再隔一行。相当于断两行。<img src="/source/images/span_div_p_diff.jpg" alt="span/div/p差異图"></p>
+<p>p (paragraph)元素是块级的，前后断行，而且还要再隔一行。相当于断两行。<br><img src="/images/span_div_p_diff.jpg" alt="span_div_p标签差異图"></p>
 <p>參考鏈接：</p>
 <p>1、<a href="https://blog.csdn.net/m1654399928/article/details/8992402" target="_blank" rel="noopener">https://blog.csdn.net/m1654399928/article/details/8992402</a></p>
 
@@ -452,116 +452,19 @@
 
       
         
-          
-            <p>CSS 全稱為 Cascading Style Sheets, 中文譯作層疊樣式表，是一種為結構化檔案（HTML / XML）添加樣式的電腦語言，由W3C定義和維護。</p>
+          <p>CSS 全稱為 Cascading Style Sheets, 中文譯作層疊樣式表，是一種為結構化檔案（HTML / XML）添加樣式的電腦語言，由W3C定義和維護。</p>
 <p>CSS 可以用於設定頁面佈局、元素樣式、全局樣式等。</p>
 <p>CSS 的最重要的目的是分離檔案的的內容與顯示，簡化結構化檔案。</p>
 <p>###何為層疊？</p>
 <p>CSS 可以有多種引入方式，一個網頁可以引入多個 CSS 檔案，同一種 CSS 規則可以被反覆多次添加。這使得 CSS 的使用方式非常靈活，但也會頻繁地出現規則衝突。同時對一個網頁元素設定無法並存的 2 種樣式時，就會引起衝突。CSS 的特色之一就是其解決規則衝突的方案。CSS 的規則衝突可以分為不同來源之間的規則衝突和同一來源內部的規則衝突。CSS 分層次、立體化的比較不同規則的優先級的方式，就是所謂層疊性(cascading)的體現。</p>
-<p>###主要內容</p>
-<p>CSS 由多組「規則」組成。每個規則由「選擇器」（selector）、「屬性」（property）和「值」（value）組成：</p>
-<ul>
-<li>選擇器（Selector）：多個選擇器可以半形逗號（,）隔開。</li>
-<li>屬性（property）：CSS1、CSS2、CSS3規定了許多的屬性，目的在控制選擇器的樣式。</li>
-<li>值（value）：指屬性接受的設定值，多個關鍵字時大都以空格隔開。</li>
-</ul>
-<p>屬性和值之間用半形冒號（:）隔開，屬性和值合稱為「特性」(attribute)。多個特性間用「;」隔開，最後用「{ }」括起來。</p>
-<p>####選擇器</p>
-<p>要針對沒有標籤定義範圍進行樣式設定時，可利用<code>&lt;div&gt;</code>與<code>&lt;span&gt;</code>標籤</p>
-<p>CSS裡現在共有5種基本選擇器（Basic Selectors）和2種偽選擇器。不同選擇器的優先級別和運作效能往往存在差異。</p>
-<h4 id="基本選擇器"><a href="#基本選擇器" class="headerlink" title="基本選擇器"></a>基本選擇器</h4><ul>
-<li>標籤選擇器（h1，p等，也叫類型選擇器、元素選擇器）——<code>elementname</code></li>
-<li>類別選擇器（class）——<code>.elementname</code></li>
-<li>ID選擇器（ID）——<code>#elementname</code></li>
-<li>萬用選擇器——<code>* ns|* *|*</code></li>
-<li>屬性選擇器（也翻譯為「萬用字元選擇器」）——<code>[attribute]</code></li>
-</ul>
-<h4 id="屬性選擇器"><a href="#屬性選擇器" class="headerlink" title="屬性選擇器"></a>屬性選擇器</h4><p>屬性選擇器允許用戶自訂屬性名稱，而不僅僅限於id，class屬性。屬性選擇器共有7種。</p>
-<table>
-<thead>
-<tr>
-<th>代碼</th>
-<th>意思</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[attribute]</code></td>
-<td>元素有<code>attribute</code>的屬性。</td>
-</tr>
-<tr>
-<td><code>[attribute=&quot;value&quot;]</code></td>
-<td>屬性<code>attribute</code>裡是<code>value</code></td>
-</tr>
-<tr>
-<td><code>[attribute~=&quot;value&quot;]</code></td>
-<td>屬性<code>attribute</code>裡使用空白分開的字串裡其中一個是<code>value</code></td>
-</tr>
-<tr>
-<td>`[attribute</td>
-<td>=”value”]`</td>
-<td>屬性<code>attribute</code>裡是<code>value</code>或者以<code>value-</code>開頭的字串</td>
-</tr>
-<tr>
-<td><code>[attribute^=&quot;value&quot;]</code></td>
-<td>屬性<code>attribute</code>裡最前的是<code>value</code></td>
-</tr>
-<tr>
-<td><code>[attribute$=&quot;value&quot;]</code></td>
-<td>屬性<code>attribute</code>裡最後的是<code>value</code></td>
-</tr>
-<tr>
-<td><code>[attribute*=&quot;value&quot;]</code></td>
-<td>屬性<code>attribute</code>裡有<code>value</code>出現過至少一次</td>
-</tr>
-</tbody>
-</table>
-<h4 id="組合選擇器"><a href="#組合選擇器" class="headerlink" title="組合選擇器"></a>組合選擇器</h4><p>CSS里現在共有4種組合選擇符（Combinators）：</p>
-<table>
-<thead>
-<tr>
-<th>符號</th>
-<th>標題文字</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>A &gt; B</code></td>
-<td>選擇A下一層的元素B</td>
-</tr>
-<tr>
-<td><code>A ~ B</code></td>
-<td>選擇與A同父層的元素B</td>
-</tr>
-<tr>
-<td><code>A + B</code></td>
-<td>選擇與A相鄰的元素B（不能被任何元素相隔）</td>
-</tr>
-<tr>
-<td><code>A B</code></td>
-<td>包含選擇符</td>
-</tr>
-</tbody>
-</table>
-<h4 id="選擇器使用範例"><a href="#選擇器使用範例" class="headerlink" title="選擇器使用範例"></a>選擇器使用範例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">    font-size: 110%;</span><br><span class="line">    font-family: garamond, sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h2 &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    background: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.highlight &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    background: yellow;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p.center &#123;text-align:center;&#125;</span><br><span class="line">#paraID1 &#123;</span><br><span class="line">    text-align:center;</span><br><span class="line">    color:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;这是一个段落。&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">hr &#123;color:sienna;&#125;</span><br><span class="line">p &#123;margin-left:20px;&#125;</span><br><span class="line">body &#123;background-image:url(&quot;images/back40.gif&quot;);&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
-<p>###CSS 註釋</p>
-<p>/<em> 這是個規範注释 </em>/</p>
-<p>// 這是個非規範注释</p>
-<p>###樣式優先級</p>
-<p>優先級即樣式特性對於元素的相關性。</p>
-<p>瀏覽器通過判斷哪些特性與元素最相關以決定並應用到該元素上。</p>
-<p>優先級僅由選擇器的匹配規則所決定。</p>
-<p>###CSS Box Model</p>
-<p><img src="/source/images/CSS_Box_Model.jpg" alt="CSS_Box_Model"><img src="/source/images/CSS_Box_Model2.jpg" alt="CSS_Box_Model"></p>
-<p>CSS 的 padding 和 margin 的賦值是從上順時針旋轉，iOS 則是從上逆時針旋轉的。</p>
-<p>###<a href="http://www.w3school.com.cn/cssref/index.asp" target="_blank" rel="noopener">CSS 參考手冊</a></p>
-<p>###參考鏈接：</p>
-<p>1、<a href="https://zh.wikipedia.org/wiki/层叠样式表" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/层叠样式表</a></p>
-<p>2、<a href="http://www.w3school.com.cn/css/index.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/css/index.asp</a></p>
-<p>3、<a href="http://www.runoob.com/css/css-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/css/css-tutorial.html</a></p>
-<p>4、<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model</a></p>
-
-          
+<p>###主要內容<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/02/CSS-学习笔记/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
