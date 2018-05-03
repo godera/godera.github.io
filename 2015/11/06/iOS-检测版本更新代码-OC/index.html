@@ -2,6 +2,9 @@
 
 
 
+
+
+
   
 
 
@@ -9,7 +12,7 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 
 
@@ -49,19 +52,19 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=6.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.0.2" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
 
 
 
@@ -76,7 +79,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.0.2',
+    version: '6.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
@@ -99,11 +102,7 @@
 
 
 
-  
-  <meta name="keywords" content="iOS," />
-
-
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455- (void)checkAppVersion &amp;#123;    NSDate *now = [NSDate date];    NSTimeInterval interval = [now ti">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455- (void)checkAppVersion &amp;#123;    NSDate *now = [NSDate date];    NSTimeInterval interval = [now ti">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 检测版本更新代码-OC">
@@ -123,6 +122,13 @@
 
   <link rel="canonical" href="http://godera.org/2015/11/06/iOS-检测版本更新代码-OC/"/>
 
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>iOS 检测版本更新代码-OC | 素墨文胤</title>
   
@@ -175,12 +181,12 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"> <div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">素墨文胤</span>
         <span class="logo-line-after"><i></i></span>
@@ -192,7 +198,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -200,38 +206,50 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
 </nav>
 
 
+
   
 
 
 
- </div>
+</div>
     </header>
 
     
@@ -240,6 +258,7 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -276,11 +295,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS 检测版本更新代码-OC</h1>
+          <h1 class="post-title" itemprop="name headline">iOS 检测版本更新代码-OC
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -288,12 +315,30 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-06T21:15:31+08:00">2015-11-06</time>
+
+              
+                
+              
+
+              <time title="Created: 2015-11-06 21:15:31" itemprop="dateCreated datePublished" datetime="2015-11-06T21:15:31+08:00">2015-11-06</time>
             
 
             
-            
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-01-23 18:48:30" itemprop="dateModified" datetime="2018-01-23T18:48:30+08:00">2018-01-23</time>
+              
             
           </span>
 
@@ -328,6 +373,9 @@
         <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">- (void)checkAppVersion &#123;</span><br><span class="line">    NSDate *now = [NSDate date];</span><br><span class="line">    NSTimeInterval interval = [now timeIntervalSinceDate:[DataCenter singleton].appVerCheckDate];</span><br><span class="line">    if (interval &lt; 24 * 60 * 60) &#123;</span><br><span class="line">        // 一天内检测一次</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [DataCenter singleton].appVerCheckDate = now;</span><br><span class="line">    </span><br><span class="line">    NSString *urlString = [NSString stringWithFormat:@&quot;http://itunes.apple.com/cn/lookup?id=%@&quot;, @&quot;你的 APP 的 apple id&quot;];</span><br><span class="line">    </span><br><span class="line">    [[AFHTTPSessionManager new] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) &#123;</span><br><span class="line">        </span><br><span class="line">        NSArray *infoArray = [responseObject objectForKey:@&quot;results&quot;];</span><br><span class="line">        if ([infoArray count]) &#123;</span><br><span class="line">            NSDictionary *releaseInfo = [infoArray objectAtIndex:0];</span><br><span class="line">            NSString *onlineVersionString = [releaseInfo objectForKey:@&quot;version&quot;];</span><br><span class="line">            NSString *thisVersionString = [Utility versionRelease];</span><br><span class="line">            </span><br><span class="line">            NSArray *onlineVersionComponents = [onlineVersionString componentsSeparatedByString:@&quot;.&quot;];</span><br><span class="line">            NSArray *thisVersionComponents = [thisVersionString componentsSeparatedByString:@&quot;.&quot;];</span><br><span class="line">            </span><br><span class="line">            NSUInteger minCount = MIN(onlineVersionComponents.count, thisVersionComponents.count);</span><br><span class="line">            BOOL onlineVerGreaterThanThisVer = NO;</span><br><span class="line">            for (NSUInteger i = 0; i &lt; minCount; i ++) &#123;</span><br><span class="line">                NSUInteger onlineVersionBit = [onlineVersionComponents[i] integerValue];</span><br><span class="line">                NSUInteger thisVersionBit = [thisVersionComponents[i] integerValue];</span><br><span class="line">                if (onlineVersionBit == thisVersionBit) &#123;</span><br><span class="line">                    // 只要是相等就继续找下去，直至找到一个不相等的才能知道谁大谁小</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    if (onlineVersionBit &gt; thisVersionBit) &#123;</span><br><span class="line">                        onlineVerGreaterThanThisVer = YES;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        // onlineVersionBit &lt; thisVersionBit</span><br><span class="line">                        onlineVerGreaterThanThisVer = NO;</span><br><span class="line">                    &#125;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (onlineVerGreaterThanThisVer == NO &amp;&amp; onlineVersionComponents.count &gt; thisVersionComponents.count) &#123;</span><br><span class="line">                onlineVerGreaterThanThisVer = YES;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (onlineVerGreaterThanThisVer) &#123;</span><br><span class="line">                NSLog(@&quot;APP需要更新&quot;);</span><br><span class="line">                self.urlApp = [releaseInfo objectForKey:@&quot;trackViewUrl&quot;];</span><br><span class="line">                [HDAlertView showAlertwithTitle:HDLocalized(@&quot;Note&quot;) message:HDLocalized(@&quot;NewVersion&quot;) tiniColor:[CoreDataUpdateMethod sharedMethod].currentMoodColor delegate:self cancelButtonTitle:@&quot;否&quot; otherButtonTitles:@&quot;是&quot; ,nil].tag = 100102;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; failure:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+
+    
+
     
     
     
@@ -445,6 +493,28 @@
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
                     <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
@@ -486,7 +556,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">梁遜</span>
@@ -497,7 +567,9 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
 
 
 
@@ -505,12 +577,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.2</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -585,25 +658,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
 
 
 
@@ -649,6 +722,8 @@
   
 
   
+  
+
   
 
   
