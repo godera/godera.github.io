@@ -112,7 +112,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://godera.org/images/CSS_Box_Model.jpg">
 <meta property="og:image" content="http://godera.org/images/CSS_Box_Model2.jpg">
-<meta property="og:updated_time" content="2018-05-03T10:27:06.979Z">
+<meta property="og:updated_time" content="2018-05-03T10:30:28.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 学习笔记">
 <meta name="twitter:description" content="CSS 全稱為 Cascading Style Sheets, 中文譯作層疊樣式表，是一種為結構化檔案（HTML / XML）添加樣式的電腦語言，由W3C定義和維護。 CSS 可以用於設定頁面佈局、元素樣式、全局樣式等。 CSS 的最重要的目的是分離檔案的的內容與顯示，簡化結構化檔案。 何為層疊？CSS 可以有多種引入方式，一個網頁可以引入多個 CSS 檔案，同一種 CSS 規則可以被反覆多次添加">
@@ -340,7 +340,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-05-03 18:27:06" itemprop="dateModified" datetime="2018-05-03T18:27:06+08:00">2018-05-03</time>
+                <time title="Updated at: 2018-05-03 18:30:28" itemprop="dateModified" datetime="2018-05-03T18:30:28+08:00">2018-05-03</time>
               
             
           </span>
@@ -416,20 +416,53 @@
 <td>屬性<code>attribute</code>裡使用空白分開的字串裡其中一個是<code>value</code></td>
 </tr>
 <tr>
-<td><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">| `[attribute^=&quot;value&quot;]` | 屬性`attribute`裡最前的是`value`                       |</span><br><span class="line">| `[attribute$=&quot;value&quot;]` | 屬性`attribute`裡最後的是`value`                       |</span><br><span class="line">| `[attribute*=&quot;value&quot;]` | 屬性`attribute`裡有`value`出現過至少一次               |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 組合選擇器</span><br><span class="line"></span><br><span class="line">CSS里現在共有4種組合選擇符（Combinators）：</span><br><span class="line"></span><br><span class="line">| 符號    | 標題文字                                 |</span><br><span class="line">| ------- | ---------------------------------------- |</span><br><span class="line">| `A &gt; B` | 選擇A下一層的元素B                       |</span><br><span class="line">| `A ~ B` | 選擇與A同父層的元素B                     |</span><br><span class="line">| `A + B` | 選擇與A相鄰的元素B（不能被任何元素相隔） |</span><br><span class="line">| `A B`   | 包含選擇符                               |</span><br><span class="line"></span><br><span class="line">#### 選擇器使用範例</span><br></pre></td></tr></table></figure></td>
+<td>`[attribute</td>
+<td>=”value”]`</td>
+<td>屬性<code>attribute</code>裡是<code>value</code>或者以<code>value-</code>開頭的字串</td>
+</tr>
+<tr>
+<td><code>[attribute^=&quot;value&quot;]</code></td>
+<td>屬性<code>attribute</code>裡最前的是<code>value</code></td>
+</tr>
+<tr>
+<td><code>[attribute$=&quot;value&quot;]</code></td>
+<td>屬性<code>attribute</code>裡最後的是<code>value</code></td>
+</tr>
+<tr>
+<td><code>[attribute*=&quot;value&quot;]</code></td>
+<td>屬性<code>attribute</code>裡有<code>value</code>出現過至少一次</td>
 </tr>
 </tbody>
 </table>
-<p>p {<br>    font-size: 110%;<br>    font-family: garamond, sans-serif;<br>}</p>
-<p>h2 {<br>    color: red;<br>    background: white;<br>}</p>
-<p>.highlight {<br>    color: red;<br>    background: yellow;<br>    font-weight: bold;<br>}</p>
-<p>p.center {text-align:center;}</p>
-<p>#paraID1 {<br>    text-align:center;<br>    color:red;<br>}</p>
-<p style="color:sienna;margin-left:20px">这是一个段落。</p>
-
-<p><head></head></p>
-<p><style><br>hr {color:sienna;}<br>p {margin-left:20px;}<br>body {background-image:url(“images/back40.gif”);}<br></style><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### CSS 註釋</span><br></pre></td></tr></table></figure></p>
-<p>/<em> 這是個規範注释 </em>/<br>// 這是個非規範注释<br>```</p>
+<h4 id="組合選擇器"><a href="#組合選擇器" class="headerlink" title="組合選擇器"></a>組合選擇器</h4><p>CSS里現在共有4種組合選擇符（Combinators）：</p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>標題文字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A &gt; B</code></td>
+<td>選擇A下一層的元素B</td>
+</tr>
+<tr>
+<td><code>A ~ B</code></td>
+<td>選擇與A同父層的元素B</td>
+</tr>
+<tr>
+<td><code>A + B</code></td>
+<td>選擇與A相鄰的元素B（不能被任何元素相隔）</td>
+</tr>
+<tr>
+<td><code>A B</code></td>
+<td>包含選擇符</td>
+</tr>
+</tbody>
+</table>
+<h4 id="選擇器使用範例"><a href="#選擇器使用範例" class="headerlink" title="選擇器使用範例"></a>選擇器使用範例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">    font-size: 110%;</span><br><span class="line">    font-family: garamond, sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h2 &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    background: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.highlight &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    background: yellow;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p.center &#123;text-align:center;&#125;</span><br><span class="line">#paraID1 &#123;</span><br><span class="line">    text-align:center;</span><br><span class="line">    color:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;这是一个段落。&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">hr &#123;color:sienna;&#125;</span><br><span class="line">p &#123;margin-left:20px;&#125;</span><br><span class="line">body &#123;background-image:url(&quot;images/back40.gif&quot;);&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="CSS-註釋"><a href="#CSS-註釋" class="headerlink" title="CSS 註釋"></a>CSS 註釋</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/* 這是個規範注释 */</span><br><span class="line">// 這是個非規範注释</span><br></pre></td></tr></table></figure>
 <h3 id="樣式優先級"><a href="#樣式優先級" class="headerlink" title="樣式優先級"></a>樣式優先級</h3><p>優先級即樣式特性對於元素的相關性。</p>
 <p>瀏覽器通過判斷哪些特性與元素最相關以決定並應用到該元素上。</p>
 <p>優先級僅由選擇器的匹配規則所決定。</p>
@@ -629,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#何為層疊？"><span class="nav-number">1.</span> <span class="nav-text">何為層疊？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要內容"><span class="nav-number">2.</span> <span class="nav-text">主要內容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#選擇器"><span class="nav-number">2.1.</span> <span class="nav-text">選擇器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本選擇器"><span class="nav-number">2.2.</span> <span class="nav-text">基本選擇器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#屬性選擇器"><span class="nav-number">2.3.</span> <span class="nav-text">屬性選擇器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#樣式優先級"><span class="nav-number">3.</span> <span class="nav-text">樣式優先級</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Box-Model"><span class="nav-number">4.</span> <span class="nav-text">CSS Box Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-參考手冊"><span class="nav-number">5.</span> <span class="nav-text">CSS 參考手冊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考鏈接："><span class="nav-number">6.</span> <span class="nav-text">參考鏈接：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#何為層疊？"><span class="nav-number">1.</span> <span class="nav-text">何為層疊？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要內容"><span class="nav-number">2.</span> <span class="nav-text">主要內容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#選擇器"><span class="nav-number">2.1.</span> <span class="nav-text">選擇器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本選擇器"><span class="nav-number">2.2.</span> <span class="nav-text">基本選擇器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#屬性選擇器"><span class="nav-number">2.3.</span> <span class="nav-text">屬性選擇器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#組合選擇器"><span class="nav-number">2.4.</span> <span class="nav-text">組合選擇器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#選擇器使用範例"><span class="nav-number">2.5.</span> <span class="nav-text">選擇器使用範例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-註釋"><span class="nav-number">3.</span> <span class="nav-text">CSS 註釋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#樣式優先級"><span class="nav-number">4.</span> <span class="nav-text">樣式優先級</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Box-Model"><span class="nav-number">5.</span> <span class="nav-text">CSS Box Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-參考手冊"><span class="nav-number">6.</span> <span class="nav-text">CSS 參考手冊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考鏈接："><span class="nav-number">7.</span> <span class="nav-text">參考鏈接：</span></a></li></ol></div>
             
 
           </div>
