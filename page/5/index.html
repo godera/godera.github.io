@@ -258,6 +258,254 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/11/10/CoreData的优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/10/CoreData的优化/" itemprop="url">CoreData的优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-10T12:31:53+08:00">2015-11-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>//我对 mmDao 进行了修改，最终代码放在了：<a href="https://github.com/godera/HDCoreDataWrapper" target="_blank" rel="noopener">https://github.com/godera/HDCoreDataWrapper</a></p>
+<p>【转帖，有修改】在多线程环境中使用CoreData<br>BY 子非鱼 · 2014 年 10 月 13 日</p>
+<p>上回书说道，其实 CoreData 学起来也没有很复杂，它的增、删、改、查和别的 ORM 大同小异。但是世界总是很复杂的，一根筋的去考虑问题很容易卡到蛋，默认情况下我们的代码都在 Main Thread 中执行，数据库操作一旦量多了，频繁了，势必会阻塞住主线程的其他操作，俗语说–卡住了。</p>
+<p>这个世界天然是多线程的，所以我们操作数据也必须多线程。CoreData 对多线程的支持比较奇怪（按照一般的思路来说），CoreData 的 NSPersistentStoreCoordinator 和 NSManagedObjectContext 对象都是不能跨线程使用的，NSManagedObject 也不行。有人想：加把锁不就完了？No！作为一个处女座是不能忍受这么丑陋的解决方案的。其实 NSManagedObjectContext 已经对跨线程提供了内置的支持，只不过方式比较特殊，需要脑洞大开才行。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/11/10/CoreData的优化/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/11/06/iOS-检测版本更新代码-OC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/06/iOS-检测版本更新代码-OC/" itemprop="url">iOS 检测版本更新代码-OC</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-06T21:15:31+08:00">2015-11-06</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">- (void)checkAppVersion &#123;</span><br><span class="line">    NSDate *now = [NSDate date];</span><br><span class="line">    NSTimeInterval interval = [now timeIntervalSinceDate:[DataCenter singleton].appVerCheckDate];</span><br><span class="line">    if (interval &lt; 24 * 60 * 60) &#123;</span><br><span class="line">        // 一天内检测一次</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [DataCenter singleton].appVerCheckDate = now;</span><br><span class="line">    </span><br><span class="line">    NSString *urlString = [NSString stringWithFormat:@&quot;http://itunes.apple.com/cn/lookup?id=%@&quot;, @&quot;你的 APP 的 apple id&quot;];</span><br><span class="line">    </span><br><span class="line">    [[AFHTTPSessionManager new] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) &#123;</span><br><span class="line">        </span><br><span class="line">        NSArray *infoArray = [responseObject objectForKey:@&quot;results&quot;];</span><br><span class="line">        if ([infoArray count]) &#123;</span><br><span class="line">            NSDictionary *releaseInfo = [infoArray objectAtIndex:0];</span><br><span class="line">            NSString *onlineVersionString = [releaseInfo objectForKey:@&quot;version&quot;];</span><br><span class="line">            NSString *thisVersionString = [Utility versionRelease];</span><br><span class="line">            </span><br><span class="line">            NSArray *onlineVersionComponents = [onlineVersionString componentsSeparatedByString:@&quot;.&quot;];</span><br><span class="line">            NSArray *thisVersionComponents = [thisVersionString componentsSeparatedByString:@&quot;.&quot;];</span><br><span class="line">            </span><br><span class="line">            NSUInteger minCount = MIN(onlineVersionComponents.count, thisVersionComponents.count);</span><br><span class="line">            BOOL onlineVerGreaterThanThisVer = NO;</span><br><span class="line">            for (NSUInteger i = 0; i &lt; minCount; i ++) &#123;</span><br><span class="line">                NSUInteger onlineVersionBit = [onlineVersionComponents[i] integerValue];</span><br><span class="line">                NSUInteger thisVersionBit = [thisVersionComponents[i] integerValue];</span><br><span class="line">                if (onlineVersionBit == thisVersionBit) &#123;</span><br><span class="line">                    // 只要是相等就继续找下去，直至找到一个不相等的才能知道谁大谁小</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    if (onlineVersionBit &gt; thisVersionBit) &#123;</span><br><span class="line">                        onlineVerGreaterThanThisVer = YES;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        // onlineVersionBit &lt; thisVersionBit</span><br><span class="line">                        onlineVerGreaterThanThisVer = NO;</span><br><span class="line">                    &#125;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (onlineVerGreaterThanThisVer == NO &amp;&amp; onlineVersionComponents.count &gt; thisVersionComponents.count) &#123;</span><br><span class="line">                onlineVerGreaterThanThisVer = YES;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (onlineVerGreaterThanThisVer) &#123;</span><br><span class="line">                NSLog(@&quot;APP需要更新&quot;);</span><br><span class="line">                self.urlApp = [releaseInfo objectForKey:@&quot;trackViewUrl&quot;];</span><br><span class="line">                [HDAlertView showAlertwithTitle:HDLocalized(@&quot;Note&quot;) message:HDLocalized(@&quot;NewVersion&quot;) tiniColor:[CoreDataUpdateMethod sharedMethod].currentMoodColor delegate:self cancelButtonTitle:@&quot;否&quot; otherButtonTitles:@&quot;是&quot; ,nil].tag = 100102;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; failure:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godera.org/2015/10/10/iOS修改工程名称和程序名称-Xcode6-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -988,262 +1236,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/05/27/Cocoa-编码规范0-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/05/27/Cocoa-编码规范0-1/" itemprop="url">Cocoa 编码规范0.1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-27T13:35:37+08:00">2015-05-27</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文档依据 Coding Guidelines for Cocoa 改编<br>(<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html" target="_blank" rel="noopener">https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html</a>)<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/05/27/Cocoa-编码规范0-1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/05/08/数据的加密和解密算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/05/08/数据的加密和解密算法/" itemprop="url">数据的加密和解密算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-08T19:06:26+08:00">2015-05-08</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>客户端用户隐私数据传输加/解密方案（草案）<br>一、起因与概论<br>为避免网路上明文传输，增强对用户隐私的保护，故制定本方案。<br>本方案可以概括为：密钥随机并经RSA加密的AES加密算法。<br>主体加密是AES加密，AES密码经RSA加密。<br>本方案加密的主体是客户端和服务端传输过程中的用户隐私数据，即需要验证用户ID和Token的数据，非用户隐私数据不做加密处理。</p>
-<p>二、方案要点<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/05/08/数据的加密和解密算法/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1286,7 +1283,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1299,7 +1296,7 @@
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

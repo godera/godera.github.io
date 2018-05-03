@@ -258,6 +258,258 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/04/11/ReactiveCocoa-简单总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/11/ReactiveCocoa-简单总结/" itemprop="url">ReactiveCocoa 简单总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-11T11:00:29+08:00">2016-04-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>####　　ReactiveCocoa 是什么？<br>　　ReactiveCocoa 由 Github的工程师们开发，统一了 Native APP 中事件的等待和响应。</p>
+<p>####　　基本概念：RACSignal<br>　　ReactiveCocoa 通过对信号（Signal）的订阅（subscribe）、用 Block 来处理事件的等待和响应。信号即被订阅的对象，描述了我们关注的状态的变化。</p>
+<p>####　　RACSignal 的常用操作与示例<br>　　1、-subscribeNext:订阅下一个信号，信号被订阅后才能起作用。<br>　　2、-map:映射，信号使用前的预处理。<br>　　3、-filter:信号使用前的过滤。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/11/ReactiveCocoa-简单总结/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/04/09/从汉语字面理解-观察者模式-和-订阅者模式-的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/09/从汉语字面理解-观察者模式-和-订阅者模式-的区别/" itemprop="url">从汉语字面理解 观察者模式 和 订阅者模式 的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-09T18:19:20+08:00">2016-04-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　很多文章都会将 观察者模式 和 订阅者模式 混为一谈，其实他们两个还是有本质区别的。</p>
+<p>　　<strong>举例来说：</strong><br>　　1、警察与小偷：小偷总是计划着犯罪，警察为了抓到证据（某类信息），不得不在暗处设岗观察，这是观察者模式；<br>　　2、读者与邮局：邮局有报纸订阅服务，于是读者去邮局订阅了报纸（某类信息），这是订阅者模式。</p>
+<p>　　<strong>由上可见两者区别：</strong><br>　　1、订阅者模式下，订阅者被动接受信息、服务提供者主动提供服务；观察者模式下，观察者主动获取信息、被观察者并不知情；<br>　　2、订阅者模式 需要在服务提供者处有订阅者列表，观察者模式 在被观察者处则没有 观察者名单列表；<br>　　3、订阅者模式 有移除订阅者行为，观察者模式 则没有移除观察者行为；</p>
+<p>　　<strong>二者如何实现？</strong><br>　　订阅者模式：服务提供者有订阅者列表，并提供订阅和取消订阅的方法，当有信息变化时及时 <strong>推送</strong> 给订阅者，订阅者接收到信息；<br>　　观察者模式：观察者主动 <strong>轮询</strong> 被观察者的静态信息和动态信息；</p>
+<p>　　<strong>结论：</strong><br>　　我们今天经常说的观察者模式，其实是订阅者模式，做的是信息流的推送，而非耗资源的轮询，所以 ReactiveCocoa 里面将变化的处理统一为 subscribeNext 方法，是以记。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godera.org/2016/03/30/让-Sublime-Text-支持-JavaScript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -996,270 +1248,11 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/01/11/iOS抓包工具介绍/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/01/11/iOS抓包工具介绍/" itemprop="url">iOS抓包工具介绍</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-11T16:38:26+08:00">2016-01-11</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###iOS抓包工具有 Charles、HTTPScoop、Wireshark、RVI+tcpdump+tcprewrite 等等：</p>
-<p>###一、Charles<br>Charles官网 <a href="http://www.charlesproxy.com/" target="_blank" rel="noopener">http://www.charlesproxy.com/</a><br>需要一个路由连接Mac和iOS设备，iOS设备通过代理转到Mac上请求<br>a、HTTP抓包<br>1、打开Charles程序<br>2、查看Mac电脑的IP地址，如192.168.1.7<br>3、打开iOS设置，进入当前WiFi连接，设置HTTP代理Group，将服务器填为上一步中获得的IP，即192.168.1.7，端口填8888<br>4、iOS设备打开你要抓包的APP进行网络操作<br>5、Charles弹出确认框，点击Allow按钮即可<br>b、HTTPS抓包<br>1、在 iOS 设备上打开这个网址 <a href="http://www.charlesproxy.com/getssl" target="_blank" rel="noopener">http://www.charlesproxy.com/getssl</a> 安装 Charles SSL 证书<br>2、在Charles的工具栏上点击设置按钮，选择Proxy Settings…<br>3、切换到SSL选项卡，选中Enable SSL Proxying，别急，选完先别关掉，还有下一步。这一步跟Fiddler不同，Fiddler安装证书后就可以抓HTTPS网址的包了，Charles则麻烦一些，需要在上一步的SSL选项卡的Locations表单填写要抓包的域名和端口，点击Add按钮，在弹出的表单中Host填写域名，比如填api.instagram.com，Port填443<br>4、接下来就跟HTTP抓包一样了<br>参考文章：<a href="http://www.99css.com/1272/" target="_blank" rel="noopener">http://www.99css.com/1272/</a></p>
-<p>###二、HTTPScoop<br>需要 Mac 一边连广域网、一边用无线网卡开网络共享给iOS设备，然后抓取该网络共享的无线网卡的包</p>
-<p>###三、Wireshark太强大以致用不了</p>
-<p>###四、RVI+tcpdump+tcprewrite<br>需求：iOS系统要求5.0以上，拥有Mac OS 并且安装XCode</p>
-<p>Apple在iOS5.0以上增加了RVI(Remote Virtual Interface）,打开它非常简单，只需要把iOS设备通过usb连接到Mac上，然后打开“终端”，输入</p>
-<p>rvictl -s [Your Device’s UDID]<br>然后在终端上会显示</p>
-<p>Starting device <strong><strong>**</strong></strong> [SUCCEEDED]<em>*</em><br>字样</p>
-<p>如果这一步产生了什么错误的话，可能是没有安装XCode或者UDID输入错误</p>
-<p>接下来在终端可以使用</p>
-<p>ifconfig -l<br>查看当前Mac上的接口，比如（不同Mac可能会有差异）：</p>
-<p>lo0 gif0 en0 en1 fw0 rvi0<br>其中rvi0就是Remote Virtual Interface，这也就意味着在你的Mac上虚拟了一个iOS设备接口,接下来就是通过tcpdump抓取这个接口上的数据包</p>
-<p> sudo tcpdump -i rvi0 -n -s 0 -w dump.pcap tcp<br>解释一下上面重要参数的含义：</p>
-<p>-i rvi0 选择需要抓取的接口为rvi0（远程虚拟接口）<br>-s 0 抓取全部数据包<br>-w dump.pcap 设置保存的文件名称<br>tcp 只抓取tcp包<br>当tcpdump运行之后，你可以在iOS设备上开始浏览你想抓取的App，期间产生的数据包均会保存到dump.pcap文件中，当想结束抓取时直接终止tcpdump即可</p>
-<p>接下来就是需要处理抓取的数据，目前通过tcpdump保存的dump.pcap保存的是原始数据，但是一些常用的抓包软件（比如Chales）是解析不了的，所以需要做一个转换。</p>
-<p>打开终端,我们需要使用tcprewrite这款工具，如果没有安装的话，可以通过HomeBrew快速安装</p>
-<p>brew install tcpreplay<br>我们需要的tcprewrite是tcpreplay套件中的一个工具，当安装完成后，输入</p>
-<p>tcprewrite –dlt=enet –enet-dmac=00:11:22:33:44:55 –enet-smac=66:77:88:99:AA:BB –infile=dump.pcap –outfile=dumpFinal.pcap<br>如果没有报错就说明转换成功，之后使用Chales打开dumpFinal.pcap就可以查看到刚才的数据包了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/12/28/Xcode如何生成-Managed-by-Xcode-签名/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/12/28/Xcode如何生成-Managed-by-Xcode-签名/" itemprop="url">Xcode如何生成 (Managed by Xcode) 签名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-28T12:13:12+08:00">2015-12-28</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天不小心删掉了苹果开发者后台的(Managed by Xcode) 签名，然后我在 Xcode 的 Preferences 里的 Accounts 里把 Apple ID 删除再添加一次，不久就发现 (Managed by Xcode) 签名自动生成了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1302,7 +1295,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1315,7 +1308,7 @@ PS：密码用引号引起，最后的*号表示允许在任意IP连接到服务
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

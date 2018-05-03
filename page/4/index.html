@@ -258,6 +258,265 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2016/01/11/iOS抓包工具介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/01/11/iOS抓包工具介绍/" itemprop="url">iOS抓包工具介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-11T16:38:26+08:00">2016-01-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###iOS抓包工具有 Charles、HTTPScoop、Wireshark、RVI+tcpdump+tcprewrite 等等：</p>
+<p>###一、Charles<br>Charles官网 <a href="http://www.charlesproxy.com/" target="_blank" rel="noopener">http://www.charlesproxy.com/</a><br>需要一个路由连接Mac和iOS设备，iOS设备通过代理转到Mac上请求<br>a、HTTP抓包<br>1、打开Charles程序<br>2、查看Mac电脑的IP地址，如192.168.1.7<br>3、打开iOS设置，进入当前WiFi连接，设置HTTP代理Group，将服务器填为上一步中获得的IP，即192.168.1.7，端口填8888<br>4、iOS设备打开你要抓包的APP进行网络操作<br>5、Charles弹出确认框，点击Allow按钮即可<br>b、HTTPS抓包<br>1、在 iOS 设备上打开这个网址 <a href="http://www.charlesproxy.com/getssl" target="_blank" rel="noopener">http://www.charlesproxy.com/getssl</a> 安装 Charles SSL 证书<br>2、在Charles的工具栏上点击设置按钮，选择Proxy Settings…<br>3、切换到SSL选项卡，选中Enable SSL Proxying，别急，选完先别关掉，还有下一步。这一步跟Fiddler不同，Fiddler安装证书后就可以抓HTTPS网址的包了，Charles则麻烦一些，需要在上一步的SSL选项卡的Locations表单填写要抓包的域名和端口，点击Add按钮，在弹出的表单中Host填写域名，比如填api.instagram.com，Port填443<br>4、接下来就跟HTTP抓包一样了<br>参考文章：<a href="http://www.99css.com/1272/" target="_blank" rel="noopener">http://www.99css.com/1272/</a></p>
+<p>###二、HTTPScoop<br>需要 Mac 一边连广域网、一边用无线网卡开网络共享给iOS设备，然后抓取该网络共享的无线网卡的包</p>
+<p>###三、Wireshark太强大以致用不了</p>
+<p>###四、RVI+tcpdump+tcprewrite<br>需求：iOS系统要求5.0以上，拥有Mac OS 并且安装XCode</p>
+<p>Apple在iOS5.0以上增加了RVI(Remote Virtual Interface）,打开它非常简单，只需要把iOS设备通过usb连接到Mac上，然后打开“终端”，输入</p>
+<p>rvictl -s [Your Device’s UDID]<br>然后在终端上会显示</p>
+<p>Starting device <strong><strong>**</strong></strong> [SUCCEEDED]<em>*</em><br>字样</p>
+<p>如果这一步产生了什么错误的话，可能是没有安装XCode或者UDID输入错误</p>
+<p>接下来在终端可以使用</p>
+<p>ifconfig -l<br>查看当前Mac上的接口，比如（不同Mac可能会有差异）：</p>
+<p>lo0 gif0 en0 en1 fw0 rvi0<br>其中rvi0就是Remote Virtual Interface，这也就意味着在你的Mac上虚拟了一个iOS设备接口,接下来就是通过tcpdump抓取这个接口上的数据包</p>
+<p> sudo tcpdump -i rvi0 -n -s 0 -w dump.pcap tcp<br>解释一下上面重要参数的含义：</p>
+<p>-i rvi0 选择需要抓取的接口为rvi0（远程虚拟接口）<br>-s 0 抓取全部数据包<br>-w dump.pcap 设置保存的文件名称<br>tcp 只抓取tcp包<br>当tcpdump运行之后，你可以在iOS设备上开始浏览你想抓取的App，期间产生的数据包均会保存到dump.pcap文件中，当想结束抓取时直接终止tcpdump即可</p>
+<p>接下来就是需要处理抓取的数据，目前通过tcpdump保存的dump.pcap保存的是原始数据，但是一些常用的抓包软件（比如Chales）是解析不了的，所以需要做一个转换。</p>
+<p>打开终端,我们需要使用tcprewrite这款工具，如果没有安装的话，可以通过HomeBrew快速安装</p>
+<p>brew install tcpreplay<br>我们需要的tcprewrite是tcpreplay套件中的一个工具，当安装完成后，输入</p>
+<p>tcprewrite –dlt=enet –enet-dmac=00:11:22:33:44:55 –enet-smac=66:77:88:99:AA:BB –infile=dump.pcap –outfile=dumpFinal.pcap<br>如果没有报错就说明转换成功，之后使用Chales打开dumpFinal.pcap就可以查看到刚才的数据包了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/12/28/Xcode如何生成-Managed-by-Xcode-签名/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁逊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/12/28/Xcode如何生成-Managed-by-Xcode-签名/" itemprop="url">Xcode如何生成 (Managed by Xcode) 签名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-28T12:13:12+08:00">2015-12-28</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天不小心删掉了苹果开发者后台的(Managed by Xcode) 签名，然后我在 Xcode 的 Preferences 里的 Accounts 里把 Apple ID 删除再添加一次，不久就发现 (Managed by Xcode) 签名自动生成了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godera.org/2015/12/04/扩展Mac自带词典词库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -991,259 +1250,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/11/10/CoreData的优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/10/CoreData的优化/" itemprop="url">CoreData的优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-10T12:31:53+08:00">2015-11-10</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>//我对 mmDao 进行了修改，最终代码放在了：<a href="https://github.com/godera/HDCoreDataWrapper" target="_blank" rel="noopener">https://github.com/godera/HDCoreDataWrapper</a></p>
-<p>【转帖，有修改】在多线程环境中使用CoreData<br>BY 子非鱼 · 2014 年 10 月 13 日</p>
-<p>上回书说道，其实 CoreData 学起来也没有很复杂，它的增、删、改、查和别的 ORM 大同小异。但是世界总是很复杂的，一根筋的去考虑问题很容易卡到蛋，默认情况下我们的代码都在 Main Thread 中执行，数据库操作一旦量多了，频繁了，势必会阻塞住主线程的其他操作，俗语说–卡住了。</p>
-<p>这个世界天然是多线程的，所以我们操作数据也必须多线程。CoreData 对多线程的支持比较奇怪（按照一般的思路来说），CoreData 的 NSPersistentStoreCoordinator 和 NSManagedObjectContext 对象都是不能跨线程使用的，NSManagedObject 也不行。有人想：加把锁不就完了？No！作为一个处女座是不能忍受这么丑陋的解决方案的。其实 NSManagedObjectContext 已经对跨线程提供了内置的支持，只不过方式比较特殊，需要脑洞大开才行。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/11/10/CoreData的优化/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/11/06/iOS-检测版本更新代码-OC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁逊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/06/iOS-检测版本更新代码-OC/" itemprop="url">iOS 检测版本更新代码-OC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-06T21:15:31+08:00">2015-11-06</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">- (void)checkAppVersion &#123;</span><br><span class="line">    NSDate *now = [NSDate date];</span><br><span class="line">    NSTimeInterval interval = [now timeIntervalSinceDate:[DataCenter singleton].appVerCheckDate];</span><br><span class="line">    if (interval &lt; 24 * 60 * 60) &#123;</span><br><span class="line">        // 一天内检测一次</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [DataCenter singleton].appVerCheckDate = now;</span><br><span class="line">    </span><br><span class="line">    NSString *urlString = [NSString stringWithFormat:@&quot;http://itunes.apple.com/cn/lookup?id=%@&quot;, @&quot;你的 APP 的 apple id&quot;];</span><br><span class="line">    </span><br><span class="line">    [[AFHTTPSessionManager new] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) &#123;</span><br><span class="line">        </span><br><span class="line">        NSArray *infoArray = [responseObject objectForKey:@&quot;results&quot;];</span><br><span class="line">        if ([infoArray count]) &#123;</span><br><span class="line">            NSDictionary *releaseInfo = [infoArray objectAtIndex:0];</span><br><span class="line">            NSString *onlineVersionString = [releaseInfo objectForKey:@&quot;version&quot;];</span><br><span class="line">            NSString *thisVersionString = [Utility versionRelease];</span><br><span class="line">            </span><br><span class="line">            NSArray *onlineVersionComponents = [onlineVersionString componentsSeparatedByString:@&quot;.&quot;];</span><br><span class="line">            NSArray *thisVersionComponents = [thisVersionString componentsSeparatedByString:@&quot;.&quot;];</span><br><span class="line">            </span><br><span class="line">            NSUInteger minCount = MIN(onlineVersionComponents.count, thisVersionComponents.count);</span><br><span class="line">            BOOL onlineVerGreaterThanThisVer = NO;</span><br><span class="line">            for (NSUInteger i = 0; i &lt; minCount; i ++) &#123;</span><br><span class="line">                NSUInteger onlineVersionBit = [onlineVersionComponents[i] integerValue];</span><br><span class="line">                NSUInteger thisVersionBit = [thisVersionComponents[i] integerValue];</span><br><span class="line">                if (onlineVersionBit == thisVersionBit) &#123;</span><br><span class="line">                    // 只要是相等就继续找下去，直至找到一个不相等的才能知道谁大谁小</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    if (onlineVersionBit &gt; thisVersionBit) &#123;</span><br><span class="line">                        onlineVerGreaterThanThisVer = YES;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        // onlineVersionBit &lt; thisVersionBit</span><br><span class="line">                        onlineVerGreaterThanThisVer = NO;</span><br><span class="line">                    &#125;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (onlineVerGreaterThanThisVer == NO &amp;&amp; onlineVersionComponents.count &gt; thisVersionComponents.count) &#123;</span><br><span class="line">                onlineVerGreaterThanThisVer = YES;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (onlineVerGreaterThanThisVer) &#123;</span><br><span class="line">                NSLog(@&quot;APP需要更新&quot;);</span><br><span class="line">                self.urlApp = [releaseInfo objectForKey:@&quot;trackViewUrl&quot;];</span><br><span class="line">                [HDAlertView showAlertwithTitle:HDLocalized(@&quot;Note&quot;) message:HDLocalized(@&quot;NewVersion&quot;) tiniColor:[CoreDataUpdateMethod sharedMethod].currentMoodColor delegate:self cancelButtonTitle:@&quot;否&quot; otherButtonTitles:@&quot;是&quot; ,nil].tag = 100102;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; failure:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1286,7 +1297,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1299,7 +1310,7 @@
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
