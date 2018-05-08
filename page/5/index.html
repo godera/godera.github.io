@@ -218,7 +218,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -226,7 +226,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
 
       
@@ -261,6 +261,159 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/11/16/navigationItem的正确用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁遜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/16/navigationItem的正确用法/" itemprop="url">
+                  navigationItem的正确用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-11-16 15:52:47" itemprop="dateCreated datePublished" datetime="2015-11-16T15:52:47+08:00">2015-11-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-01-23 18:48:36" itemprop="dateModified" datetime="2018-01-23T18:48:36+08:00">2018-01-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天设置一个 UITabBarController 管理下的 UIViewController 的 self.navigationItem.title 时怎么也设置不了（UITabBarController 在 UINavigationController 管理下），于是查官方 Documentation，发现如下文字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@interface UIViewController (UINavigationControllerItem)</span><br><span class="line">navigationItem Property</span><br><span class="line">The navigation item used to represent the view controller in a parent&apos;s navigation bar. (read-only)</span><br></pre></td></tr></table></figure></p>
+<p>然后设置 self.tabBarController.navigationItem.title 就有效了<br>顺便提一下，导航栏是其 viewControllers 共用的，所以 设置 navigationItem 要在 viewWillAppear 里，如果更改了 navigationBar，还要记得在 viewWillDisappear 的时候恢复原状。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -316,14 +469,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-11-10 12:31:53" itemprop="dateCreated datePublished" datetime="2015-11-10T12:31:53+08:00">2015-11-10</time>
+              <time title="Created: 2015-11-10 12:31:53" itemprop="dateCreated datePublished" datetime="2015-11-10T12:31:53+08:00">2015-11-10</time>
             
 
             
@@ -340,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:26" itemprop="dateModified" datetime="2018-01-23T18:48:26+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:26" itemprop="dateModified" datetime="2018-01-23T18:48:26+08:00">2018-01-23</time>
               
             
           </span>
@@ -381,7 +534,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/11/10/CoreData的优化/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -475,14 +628,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-11-06 21:15:31" itemprop="dateCreated datePublished" datetime="2015-11-06T21:15:31+08:00">2015-11-06</time>
+              <time title="Created: 2015-11-06 21:15:31" itemprop="dateCreated datePublished" datetime="2015-11-06T21:15:31+08:00">2015-11-06</time>
             
 
             
@@ -499,7 +652,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:30" itemprop="dateModified" datetime="2018-01-23T18:48:30+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:30" itemprop="dateModified" datetime="2018-01-23T18:48:30+08:00">2018-01-23</time>
               
             
           </span>
@@ -626,14 +779,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-10-10 19:53:36" itemprop="dateCreated datePublished" datetime="2015-10-10T19:53:36+08:00">2015-10-10</time>
+              <time title="Created: 2015-10-10 19:53:36" itemprop="dateCreated datePublished" datetime="2015-10-10T19:53:36+08:00">2015-10-10</time>
             
 
             
@@ -650,7 +803,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:28" itemprop="dateModified" datetime="2018-01-23T18:48:28+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:28" itemprop="dateModified" datetime="2018-01-23T18:48:28+08:00">2018-01-23</time>
               
             
           </span>
@@ -779,14 +932,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-10-10 18:31:51" itemprop="dateCreated datePublished" datetime="2015-10-10T18:31:51+08:00">2015-10-10</time>
+              <time title="Created: 2015-10-10 18:31:51" itemprop="dateCreated datePublished" datetime="2015-10-10T18:31:51+08:00">2015-10-10</time>
             
 
             
@@ -803,7 +956,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:09" itemprop="dateModified" datetime="2018-01-23T18:48:09+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:09" itemprop="dateModified" datetime="2018-01-23T18:48:09+08:00">2018-01-23</time>
               
             
           </span>
@@ -939,14 +1092,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-09-09 09:25:53" itemprop="dateCreated datePublished" datetime="2015-09-09T09:25:53+08:00">2015-09-09</time>
+              <time title="Created: 2015-09-09 09:25:53" itemprop="dateCreated datePublished" datetime="2015-09-09T09:25:53+08:00">2015-09-09</time>
             
 
             
@@ -963,7 +1116,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:15" itemprop="dateModified" datetime="2018-01-23T18:48:15+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:15" itemprop="dateModified" datetime="2018-01-23T18:48:15+08:00">2018-01-23</time>
               
             
           </span>
@@ -1091,14 +1244,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-08-28 14:39:47" itemprop="dateCreated datePublished" datetime="2015-08-28T14:39:47+08:00">2015-08-28</time>
+              <time title="Created: 2015-08-28 14:39:47" itemprop="dateCreated datePublished" datetime="2015-08-28T14:39:47+08:00">2015-08-28</time>
             
 
             
@@ -1115,7 +1268,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:12" itemprop="dateModified" datetime="2018-01-23T18:48:12+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:12" itemprop="dateModified" datetime="2018-01-23T18:48:12+08:00">2018-01-23</time>
               
             
           </span>
@@ -1243,14 +1396,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-06-01 11:55:04" itemprop="dateCreated datePublished" datetime="2015-06-01T11:55:04+08:00">2015-06-01</time>
+              <time title="Created: 2015-06-01 11:55:04" itemprop="dateCreated datePublished" datetime="2015-06-01T11:55:04+08:00">2015-06-01</time>
             
 
             
@@ -1267,7 +1420,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:34" itemprop="dateModified" datetime="2018-01-23T18:48:34+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:34" itemprop="dateModified" datetime="2018-01-23T18:48:34+08:00">2018-01-23</time>
               
             
           </span>
@@ -1311,162 +1464,6 @@
 3、pdf矢量图需要在build的时候自动生成1-3x图，有可能会失真，所以需要校对，并调整。</code></p>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/05/31/头文件的两种引用方式的区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁遜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/05/31/头文件的两种引用方式的区别/" itemprop="url">
-                  头文件的两种引用方式的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2015-05-31 22:08:56" itemprop="dateCreated datePublished" datetime="2015-05-31T22:08:56+08:00">2015-05-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2018-01-23 18:48:15" itemprop="dateModified" datetime="2018-01-23T18:48:15+08:00">2018-01-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　摘自：<a href="http://www.tuicool.com/articles/EbMNv2" target="_blank" rel="noopener">http://www.tuicool.com/articles/EbMNv2</a><br>　　根据苹果文档（<a href="https://developer.apple.com/library/mac/documentation/developertools/Conceptual/XcodeBuildSystem/300-Build_Settings/bs_build_settings.html#//apple_ref/doc/uid/TP40002691-SW5" target="_blank" rel="noopener">https://developer.apple.com/library/mac/documentation/developertools/Conceptual/XcodeBuildSystem/300-Build_Settings/bs_build_settings.html#//apple_ref/doc/uid/TP40002691-SW5</a> ），XCode 用户可以 通过 Header Search Paths 来配置环境变量。但这里涉及到一个另外一个参数 User Header Search Paths， 这两者到底有什么区别呢？<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/05/31/头文件的两种引用方式的区别/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1550,8 +1547,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">90</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -1586,7 +1583,7 @@
                       
                     
                     <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -1639,7 +1636,7 @@
 
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
 
 
 

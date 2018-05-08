@@ -218,7 +218,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -226,7 +226,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
 
       
@@ -261,6 +261,159 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/03/16/世界各国文字计算机编码之我见/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梁遜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="素墨文胤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/03/16/世界各国文字计算机编码之我见/" itemprop="url">
+                  世界各国文字计算机编码之我见
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-03-16 15:45:10" itemprop="dateCreated datePublished" datetime="2015-03-16T15:45:10+08:00">2015-03-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-01-23 18:48:08" itemprop="dateModified" datetime="2018-01-23T18:48:08+08:00">2018-01-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　按照维持本性(该咋样就咋样)、自然分合(各国文字属不同类属、而文件是电脑中类属分类的基本单位)、独立发展(留有余量、以备扩充)、充分利用(不浪费)的原则，我觉得世界各国文字的计算机编码应该如下进行：<br>　　1、不同的文字应该各自独立编码，都可以使用前128个字符；在一个国家内涉及别国文字的场合通常很少，所以一般情况下不需要用一个全球编码，只需要一个国内编码即可；<br>　　2、还需要一个代表文字属别的标识位于同类文字首，可以用00000000，00000000+双字节的文字属别编码来标识；文字属别编码用双字节可以标识65536种文字，想来够用了。  </p>
+<p>　　这样编码的好处是：（相对于用一个全球码文件）<br>　　1、对于那些只需要单字节但却排在第256个字符后的文字、可以增加约一倍的处理速度同时减少约一半的文件大小；<br>　　2、各国文字混排的时候依然能够增加处理速度和减小文件大小；<br>　　3、机动性好，有利于各国文字的自我发展，譬如汉字就可以不必从1万多开始编码了；<br>　　4、汉字用两个字节表示只能编码65536个汉字，日常应用足够；对于65536外的生僻汉字和死字，我们可以再申请一个属别编码，这样就能使用13,1072个汉字了。  </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -316,14 +469,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 15:42:48" itemprop="dateCreated datePublished" datetime="2015-03-16T15:42:48+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 15:42:48" itemprop="dateCreated datePublished" datetime="2015-03-16T15:42:48+08:00">2015-03-16</time>
             
 
             
@@ -340,7 +493,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:05" itemprop="dateModified" datetime="2018-01-23T18:48:05+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:05" itemprop="dateModified" datetime="2018-01-23T18:48:05+08:00">2018-01-23</time>
               
             
           </span>
@@ -378,7 +531,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/03/16/【转帖】魔王波旬和佛陀之间的对话/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -472,14 +625,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 15:32:07" itemprop="dateCreated datePublished" datetime="2015-03-16T15:32:07+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 15:32:07" itemprop="dateCreated datePublished" datetime="2015-03-16T15:32:07+08:00">2015-03-16</time>
             
 
             
@@ -496,7 +649,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:41" itemprop="dateModified" datetime="2018-01-23T18:48:41+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:41" itemprop="dateModified" datetime="2018-01-23T18:48:41+08:00">2018-01-23</time>
               
             
           </span>
@@ -624,14 +777,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 15:18:28" itemprop="dateCreated datePublished" datetime="2015-03-16T15:18:28+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 15:18:28" itemprop="dateCreated datePublished" datetime="2015-03-16T15:18:28+08:00">2015-03-16</time>
             
 
             
@@ -648,7 +801,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:01" itemprop="dateModified" datetime="2018-01-23T18:48:01+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:01" itemprop="dateModified" datetime="2018-01-23T18:48:01+08:00">2018-01-23</time>
               
             
           </span>
@@ -689,7 +842,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/03/16/【转帖】全世界疯传的32条谣言，你被骗了多少？/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -783,14 +936,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 15:07:44" itemprop="dateCreated datePublished" datetime="2015-03-16T15:07:44+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 15:07:44" itemprop="dateCreated datePublished" datetime="2015-03-16T15:07:44+08:00">2015-03-16</time>
             
 
             
@@ -807,7 +960,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:08" itemprop="dateModified" datetime="2018-01-23T18:48:08+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:08" itemprop="dateModified" datetime="2018-01-23T18:48:08+08:00">2018-01-23</time>
               
             
           </span>
@@ -938,14 +1091,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 14:51:59" itemprop="dateCreated datePublished" datetime="2015-03-16T14:51:59+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 14:51:59" itemprop="dateCreated datePublished" datetime="2015-03-16T14:51:59+08:00">2015-03-16</time>
             
 
             
@@ -962,7 +1115,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:05" itemprop="dateModified" datetime="2018-01-23T18:48:05+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:05" itemprop="dateModified" datetime="2018-01-23T18:48:05+08:00">2018-01-23</time>
               
             
           </span>
@@ -1092,14 +1245,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 14:30:09" itemprop="dateCreated datePublished" datetime="2015-03-16T14:30:09+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 14:30:09" itemprop="dateCreated datePublished" datetime="2015-03-16T14:30:09+08:00">2015-03-16</time>
             
 
             
@@ -1116,7 +1269,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:03" itemprop="dateModified" datetime="2018-01-23T18:48:03+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:03" itemprop="dateModified" datetime="2018-01-23T18:48:03+08:00">2018-01-23</time>
               
             
           </span>
@@ -1154,7 +1307,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/03/16/【转帖】汉字是世界上最先进的文字，数字也是世界上最先进的数字/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1248,14 +1401,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2015-03-16 10:47:25" itemprop="dateCreated datePublished" datetime="2015-03-16T10:47:25+08:00">2015-03-16</time>
+              <time title="Created: 2015-03-16 10:47:25" itemprop="dateCreated datePublished" datetime="2015-03-16T10:47:25+08:00">2015-03-16</time>
             
 
             
@@ -1272,7 +1425,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-01-23 18:48:23" itemprop="dateModified" datetime="2018-01-23T18:48:23+08:00">2018-01-23</time>
+                <time title="Modified: 2018-01-23 18:48:23" itemprop="dateModified" datetime="2018-01-23T18:48:23+08:00">2018-01-23</time>
               
             
           </span>
@@ -1313,165 +1466,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/03/16/转帖-史稿-周克华传-作者-跟着东哥混社会/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godera.org/2015/03/16/SQLite-笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梁遜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="素墨文胤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/03/16/SQLite-笔记/" itemprop="url">
-                  SQLite 笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2015-03-16 10:21:02" itemprop="dateCreated datePublished" datetime="2015-03-16T10:21:02+08:00">2015-03-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2018-01-23 18:48:39" itemprop="dateModified" datetime="2018-01-23T18:48:39+08:00">2018-01-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>#####1、SQLite数据操作语句示例：（汉语是要替换的东东）<br>　　查： select 字段名 from 表 where 字段名 比较符 字段值 and 字段名 比较符 字段值 limit 条数;<br>　　增：insert into 要插入数据的表 (字段名1,字段名2) values (字段值1，字段值2);<br>　　删：delete from 要删除数据的表 where 字段名 比较符 字段值;<br>　　改：update 要更新的表 set 字段名1=字段值1 where 字段名 比较符 字段值;  </p>
-<p>　　select 过滤列，where过滤行；</p>
-<p>#####2、字符串应该严格用【单引号】引用，串内用单引号应该用2个单引号表示。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/03/16/SQLite-笔记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1558,8 +1553,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">90</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -1594,7 +1589,7 @@
                       
                     
                     <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -1647,7 +1642,7 @@
 
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
 
 
 
